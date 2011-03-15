@@ -1,0 +1,5 @@
+adduser.sh
+	you can add user and samba permission
+
+create_pkg.sh
+	If you want send-pr fot freebsd ports, it can generate pkg_plist file automatically.
