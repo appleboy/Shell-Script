@@ -51,13 +51,13 @@ execute ()
 
 # Process command line...
 while [ $# -gt 0 ]; do
-  case $1 in
-    --help | -h)
-      usage $0
-      ;;
-    --action) shift; action=$1; shift; username=$1; shift; ;;
-    *) usage $0; ;;
-  esac
+    case $1 in
+        --help | -h)
+            usage $0
+        ;;
+        --action) shift; action=$1; shift; username=$1; shift; ;;
+        *) usage $0; ;;
+    esac
 done
 
 test -z $action && usage $0
