@@ -1,5 +1,5 @@
 adduser.sh
-	you can add user and samba permission
+	you can add user and samba permission quickly for Ubuntu OS
 
 create_pkg.sh
 	If you want send-pr fot freebsd ports, it can generate pkg_plist file automatically.
