@@ -1,10 +1,10 @@
 #!/usr/local/bin/bash
 ###############################################
 #
-# Date:	    2011.03.14
+# Date:     2011.03.14
 # Author:   appleboy ( appleboy.tw AT gmail.com)
-# Web:	    http://blog.wu-boy.com
-# Ref:	    http://www.freebsd.org/doc/en/books/porters-handbook/plist-autoplist.html
+# Web:      http://blog.wu-boy.com
+# Ref:      http://www.freebsd.org/doc/en/books/porters-handbook/plist-autoplist.html
 #
 ###############################################
 
@@ -24,7 +24,7 @@ function usage()
 }
 
 if [ "$#" -lt "2" ]; then
-	usage
+    usage $0
 fi
 
 #
