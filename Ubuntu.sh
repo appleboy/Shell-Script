@@ -1,3 +1,43 @@
+#!/bin/bash
+################################################################################
+# Date:     2011/04/18
+# Author:   appleboy ( appleboy.tw AT gmail.com)
+# Web:      http://blog.wu-boy.com
+#
+# Program:
+#   Install all Ubuntu program automatically
+#
+# History:
+#   2011/04/18 (first release)
+#
+################################################################################
+
+# install and upgrade Ubuntu
+apt-get update
+apt-get -y install openssh-server
+apt-get -y install vim
+apt-get -y upgrade
+apt-get -y install build-essential
+apt-get -y install git
+apt-get -y install subversion
+apt-get -y install bison
+apt-get -y install flex
+apt-get -y install gettext
+apt-get -y install g++
+apt-get -y install libncurses5-dev
+apt-get -y install libncursesw5-dev
+apt-get -y install exuberant-ctags
+apt-get -y install sharutils
+apt-get -y install help2man
+apt-get -y install zlib1g-dev libssl-dev
+# for samba 3.0.2
+apt-get -y install gawk
+# for Ralink
+apt-get -y install libid3tag0-dev
+apt-get -y install libgdbm-dev
+apt-get -y install xinetd nfs-kernel-server minicom build-essential libncurses5-dev uboot-mkimage autoconf automake
+apt-get -y install qt4-make
+
 # git core
 apt-get install git-core git-doc git-gui
 
