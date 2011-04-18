@@ -3,3 +3,6 @@ adduser.sh
 
 create_pkg.sh
 	If you want send-pr fot freebsd ports, it can generate pkg_plist file automatically.
+	
+Ubuntu.sh
+	Install all Ubuntu program automatically.
