@@ -39,50 +39,54 @@ apt-get -y install xinetd nfs-kernel-server minicom build-essential libncurses5-
 apt-get -y install qt4-make
 
 # git core
-apt-get install git-core git-doc git-gui
+apt-get -y install git-core git-doc git-gui
 
 # terminal-based package manager (terminal interface only)
-apt-get install aptitude
+apt-get -y install aptitude
 
 # Installer for Microsoft TrueType core fonts
-apt-get install ttf-mscorefonts-installer
-aptitude purge ttf-mscorefonts-installer ubuntu-restricted-extras
+apt-get -y install ttf-mscorefonts-installer
+aptitude -y purge ttf-mscorefonts-installer ubuntu-restricted-extras
 
 # firefox upgrade 4.0
 add-apt-repository ppa:mozillateam/firefox-stable
-apt-get update && apt-get upgrade
+apt-get -y update && apt-get -y upgrade
 
 # lazyscripts
 add-apt-repository ppa:lazyscripts/stable
-apt-get update && apt-get install lazyscripts
+apt-get -y update && apt-get -y install lazyscripts
 
 # program tool: geany
 add-apt-repository ppa:geany-dev/ppa
-apt-get install geany
+apt-get -y install geany
 
 # pidgin
-apt-get install pidgin
+apt-get -y install pidgin
 
 # filezilla 
-apt-get install filezilla
+apt-get -y install filezilla
 
 # vim
-apt-get install vim
+apt-get -y install vim
 
 # PCMan
-apt-get install pcmanx-gtk2
+apt-get -y install pcmanx-gtk2
 
 # apache mpm worker mod_fcgid
-apt-get install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
-apt-get install apache2 php5 php5-gd php5-curl
+apt-get -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
+apt-get -y install apache2 php5 php5-gd php5-curl
 
 # man program
-apt-get install most
+apt-get -y install most
 
 # version tool: subversion program
-apt-get install subversion
+apt-get -y install subversion
 
+# grep-like program specifically for large source trees
+apt-get -y install ack-grep
 
+# graphical tool to diff and merge files
+apt-get -y install meld
 
-
-
+# install git from kernel git://git.kernel.org/pub/scm/git/git.git
+apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev

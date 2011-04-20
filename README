@@ -1,8 +1,8 @@
 adduser.sh
-	you can add user and samba permission quickly for Ubuntu OS
+    you can add user and samba permission quickly for Ubuntu OS
 
 create_pkg.sh
-	If you want send-pr fot freebsd ports, it can generate pkg_plist file automatically.
-	
+    If you want send-pr fot freebsd ports, it can generate pkg_plist file automatically.
+
 Ubuntu.sh
-	Install all Ubuntu program automatically.
+    Install all Ubuntu program automatically.
