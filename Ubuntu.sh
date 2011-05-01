@@ -60,8 +60,9 @@ apt-get -y update && apt-get -y install lazyscripts
 add-apt-repository ppa:geany-dev/ppa
 apt-get -y install geany
 
-# pidgin
-apt-get -y install pidgin
+# pidgin + msn-pecan
+# ref: https://launchpad.net/~pidgin-developers/+archive/ppa/ (PPA by Pidgin Developers)
+apt-get -y install pidgin msn-pecan
 
 # filezilla 
 apt-get -y install filezilla
@@ -90,3 +91,14 @@ apt-get -y install meld
 
 # install git from kernel git://git.kernel.org/pub/scm/git/git.git
 apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
+
+# install java enviriment
+apt-get -y install sun-java6-jre sun-java6-plugin sun-java6-fonts
+
+# install adobe flash plugin
+apt-get install adobe-flashplugin
+
+# install cpanm before install Vimana
+wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
+chmod 755 /usr/bin/cpanm
+cpanm Vimana
