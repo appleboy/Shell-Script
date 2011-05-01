@@ -64,6 +64,10 @@ apt-get -y install geany
 # ref: https://launchpad.net/~pidgin-developers/+archive/ppa/ (PPA by Pidgin Developers)
 apt-get -y install pidgin msn-pecan
 
+# aMSN
+# ref: https://launchpad.net/~amsn-daily/+archive/ppa
+apt-get -y install aMSN
+
 # filezilla 
 apt-get -y install filezilla
 
