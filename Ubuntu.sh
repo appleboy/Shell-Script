@@ -61,11 +61,13 @@ add-apt-repository ppa:geany-dev/ppa
 apt-get -y install geany
 
 # pidgin + msn-pecan
-# ref: https://launchpad.net/~pidgin-developers/+archive/ppa/ (PPA by Pidgin Developers)
+# ref: https://launchpad.net/~pidgin-developers/+archive/ppa/
+add-apt-repository ppa:pidgin-developers/ppa
 apt-get -y install pidgin msn-pecan
 
 # aMSN
 # ref: https://launchpad.net/~amsn-daily/+archive/ppa
+add-apt-repository ppa:amsn-daily/ppa
 apt-get -y install aMSN
 
 # filezilla 
