@@ -102,9 +102,12 @@ apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
 apt-get -y install sun-java6-jre sun-java6-plugin sun-java6-fonts
 
 # install adobe flash plugin
-apt-get install adobe-flashplugin
+apt-get -y install adobe-flashplugin
 
 # install cpanm before install Vimana
 wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
 chmod 755 /usr/bin/cpanm
 cpanm Vimana
+
+# install ruby
+apt-get -y install ruby rake rubygems
