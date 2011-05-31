@@ -63,6 +63,9 @@ done
 test -z $action && usage $0
 test -z $username && usage $0
 
+# check home exist
+test -d ${default_home} || mkdir -p ${default_home}
+
 case $action in
     "add")
         # check if username exist
