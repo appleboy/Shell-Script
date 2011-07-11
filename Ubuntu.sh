@@ -111,3 +111,6 @@ cpanm Vimana
 
 # install ruby
 apt-get -y install ruby rake rubygems
+
+# install mercurial
+apt-get -y install mercurial
