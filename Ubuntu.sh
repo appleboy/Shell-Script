@@ -9,7 +9,7 @@
 #
 # History:
 #   2011/04/18 (first release)
-#   2011/09/03 add ffmpeg and irssi package
+#   2011/09/03 add ffmpeg, irssi and xchat package
 #
 ################################################################################
 
@@ -121,3 +121,6 @@ apt-get -y install ffmpeg
 
 # install irssi
 apt-get -y install irssi
+
+# install irc chat (XChat)
+apt-get -y install xchat
