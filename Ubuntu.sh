@@ -9,6 +9,7 @@
 #
 # History:
 #   2011/04/18 (first release)
+#   2011/09/03 add ffmpeg and irssi package
 #
 ################################################################################
 
@@ -114,3 +115,9 @@ apt-get -y install ruby rake rubygems
 
 # install mercurial
 apt-get -y install mercurial
+
+# install ffmpeg
+apt-get -y install ffmpeg
+
+# install irssi
+apt-get -y install irssi
