@@ -10,6 +10,7 @@
 # History:
 #   2011/04/18 (first release)
 #   2011/09/03 add ffmpeg, irssi and xchat package
+#   2011/10/08 add python easy install
 #
 ################################################################################
 
@@ -124,3 +125,6 @@ apt-get -y install irssi
 
 # install irc chat (XChat)
 apt-get -y install xchat
+
+# install python easy_install
+apt-get -y install python-pip
