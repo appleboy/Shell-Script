@@ -11,6 +11,7 @@
 #   2011/04/18 (first release)
 #   2011/09/03 add ffmpeg, irssi and xchat package
 #   2011/10/08 add python easy install
+#   2011/10/23 add mp3 player and easytag
 #
 ################################################################################
 
@@ -128,3 +129,12 @@ apt-get -y install xchat
 
 # install python easy_install
 apt-get -y install python-pip
+
+# install mp3 easytag
+apt-get -y install easytag
+
+# install mp3 player exaile (GNOME)
+apt-get -y install easytag
+
+# install mp3 player amarok (KDE)
+apt-get -y install amarok
