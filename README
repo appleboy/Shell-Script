@@ -6,3 +6,6 @@ create_pkg.sh
 
 Ubuntu.sh
     Install all Ubuntu program automatically.
+
+install_node.sh
+    Install [node.js](http://nodejs.org/) and [npm](https://github.com/isaacs/npm) package manager automatically.
