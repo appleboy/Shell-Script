@@ -1,11 +1,15 @@
-adduser.sh
-    you can add user and samba permission quickly for Ubuntu OS
+## adduser.sh
+    
+you can add user and samba permission quickly for Ubuntu OS
 
-create_pkg.sh
-    If you want send-pr fot freebsd ports, it can generate pkg_plist file automatically.
+## create_pkg.sh
+    
+If you want send-pr fot freebsd ports, it can generate pkg_plist file automatically.
 
-Ubuntu.sh
-    Install all Ubuntu program automatically.
+## Ubuntu.sh
+    
+Install ubuntu program, library, desktop tool automatically.
 
-install_node.sh
-    Install [node.js](http://nodejs.org/) and [npm](https://github.com/isaacs/npm) package manager automatically.
+## install_node.sh
+    
+Install [node.js](http://nodejs.org/) and [npm](https://github.com/isaacs/npm) package manager automatically.
