@@ -13,6 +13,7 @@
 #   2011/10/08 add python easy install
 #   2011/10/23 add mp3 player and easytag
 #   2012/01/17 add terminal multiplexer
+#   2012/02/24 add multiget
 #
 ################################################################################
 
@@ -142,3 +143,6 @@ apt-get -y install amarok
 
 # install terminal multiplexer (http://tmux.sourceforge.net/)
 apt-get -y install tmux
+
+# install multiget (http://multiget.sourceforge.net/)
+apt-get -y install multiget
