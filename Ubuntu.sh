@@ -146,3 +146,6 @@ apt-get -y install tmux
 
 # install multiget (http://multiget.sourceforge.net/)
 apt-get -y install multiget
+
+# install 7zip
+apt-get -y install p7zip-full
