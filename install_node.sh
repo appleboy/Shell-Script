@@ -12,8 +12,6 @@
 #
 ######################################################
 
-node_version="0.4.12"
-
 function displayErr()
 {
     echo $1;
@@ -22,13 +20,15 @@ function displayErr()
 
 function usage()
 {
-    echo 'Usage: '$0' NAME'
+    echo 'Usage: '$0' version(0.6.19)'
     exit 1;
 }
 
 if [ "$#" -lt "1" ]; then
     usage $0
 fi
+
+node_version=$1
 
 [ ! -e $PWD ] && $PWD=`pwd`
 TARGET="${PWD}/$1"
@@ -59,7 +59,7 @@ source ~/.bashrc
 
 # install npm
 curl http://npmjs.org/install.sh | sh
- 
+
 #
 # remove source
 rm -rf node.tar.gz node-v0.4.12
