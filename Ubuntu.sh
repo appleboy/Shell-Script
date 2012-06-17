@@ -15,7 +15,7 @@
 #   2012/01/17 add terminal multiplexer
 #   2012/02/24 add multiget
 #   2012/06/16 add smplayer and remove some installer
-#   2012/06/17 add mysql server and xdebug, modified flash path
+#   2012/06/17 add mysql server, xdebug, ImageMagic, modified flash path, livereload, compass tool
 #
 ################################################################################
 
@@ -43,11 +43,11 @@ apt-get -y install libgdbm-dev
 apt-get -y install xinetd nfs-kernel-server minicom build-essential libncurses5-dev uboot-mkimage autoconf automake
 apt-get -y install qt4-make
 
-# git core
-apt-get -y install git-core git-doc git-gui
-
 # terminal-based package manager (terminal interface only)
 apt-get -y install aptitude
+
+# git core
+apt-get -y install git-core git-doc git-gui
 
 # Installer for Microsoft TrueType core fonts
 apt-get -y install ttf-mscorefonts-installer
@@ -89,7 +89,7 @@ apt-get -y install apache2 php5 php5-gd php5-curl
 
 # php xdebug
 aptitude -y install php5-dev
-apt-get -y install php-pear
+aptitude -y install php-pear
 pecl install xdebug
 
 # install mysql server and phpmyadmin
@@ -159,3 +159,14 @@ apt-get -y hime im-config
 
 # install gcin
 apt-get -y gcin
+
+# install ImageMagic
+aptitude -y install imagemagick
+
+# update rubygems
+gem install rubygems-update
+update_rubygems
+
+# install compass tool and livereload
+gem install compass
+gem install guard-livereload
