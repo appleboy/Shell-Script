@@ -44,7 +44,7 @@ mkdir -p $TARGET
 #
 # download node.js source
 
-wget "http://nodejs.org/dist/node-v${node_version}.tar.gz" -O node.tar.gz
+wget "http://nodejs.org/dist/v${node_version}/node-v${node_version}.tar.gz" -O node.tar.gz
 [ ! -f node.tar.gz ] && displayErr "no such file node.tar.gz!"
 tar -zxvf node.tar.gz
 
