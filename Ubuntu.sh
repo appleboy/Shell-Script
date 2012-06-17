@@ -14,14 +14,14 @@
 #   2011/10/23 add mp3 player and easytag
 #   2012/01/17 add terminal multiplexer
 #   2012/02/24 add multiget
+#   2012/06/16 add smplayer and remove some installer
+#   2012/06/17 add mysql server and xdebug
 #
 ################################################################################
 
 # install and upgrade Ubuntu
-apt-get update
+apt-get -y update && apt-get -y upgrade
 apt-get -y install openssh-server
-apt-get -y install vim
-apt-get -y upgrade
 apt-get -y install build-essential
 apt-get -y install git
 apt-get -y install subversion
@@ -53,29 +53,28 @@ apt-get -y install aptitude
 apt-get -y install ttf-mscorefonts-installer
 aptitude -y purge ttf-mscorefonts-installer ubuntu-restricted-extras
 
-# firefox upgrade 4.0
-add-apt-repository ppa:mozillateam/firefox-stable
-apt-get -y update && apt-get -y upgrade
+# firefox stable
+add-apt-repository -y ppa:mozillateam/firefox-stable
 
 # lazyscripts
-add-apt-repository ppa:lazyscripts/stable
-apt-get -y update && apt-get -y install lazyscripts
+add-apt-repository -y ppa:lazyscripts/stable
+apt-get -y install lazyscripts
 
 # program tool: geany
-add-apt-repository ppa:geany-dev/ppa
+add-apt-repository -y ppa:geany-dev/ppa
 apt-get -y install geany
 
 # pidgin + msn-pecan
 # ref: https://launchpad.net/~pidgin-developers/+archive/ppa/
-add-apt-repository ppa:pidgin-developers/ppa
+add-apt-repository -y ppa:pidgin-developers/ppa
 apt-get -y install pidgin msn-pecan
 
 # aMSN
 # ref: https://launchpad.net/~amsn-daily/+archive/ppa
-add-apt-repository ppa:amsn-daily/ppa
+add-apt-repository -y ppa:amsn-daily/ppa
 apt-get -y install aMSN
 
-# filezilla 
+# filezilla
 apt-get -y install filezilla
 
 # vim
@@ -87,6 +86,14 @@ apt-get -y install pcmanx-gtk2
 # apache mpm worker mod_fcgid
 apt-get -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
 apt-get -y install apache2 php5 php5-gd php5-curl
+
+# php xdebug
+aptitude -y install php5-dev
+apt-get -y install php-pear
+pecl install xdebug
+
+# install mysql server and phpmyadmin
+apt-get -y install mysql-server phpmyadmin
 
 # man program
 apt-get -y install most
@@ -135,12 +142,6 @@ apt-get -y install python-pip
 # install mp3 easytag
 apt-get -y install easytag
 
-# install mp3 player exaile (GNOME)
-apt-get -y install easytag
-
-# install mp3 player amarok (KDE)
-apt-get -y install amarok
-
 # install terminal multiplexer (http://tmux.sourceforge.net/)
 apt-get -y install tmux
 
@@ -149,3 +150,12 @@ apt-get -y install multiget
 
 # install 7zip
 apt-get -y install p7zip-full
+
+# install smplayer
+apt-get -y install smplayer
+
+# install hime (http://hime.luna.com.tw/)
+apt-get -y hime im-config
+
+# install gcin
+apt-get -y gcin
