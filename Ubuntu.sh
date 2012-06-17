@@ -15,7 +15,7 @@
 #   2012/01/17 add terminal multiplexer
 #   2012/02/24 add multiget
 #   2012/06/16 add smplayer and remove some installer
-#   2012/06/17 add mysql server and xdebug
+#   2012/06/17 add mysql server and xdebug, modified flash path
 #
 ################################################################################
 
@@ -114,7 +114,7 @@ apt-get -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
 apt-get -y install sun-java6-jre sun-java6-plugin sun-java6-fonts
 
 # install adobe flash plugin
-apt-get -y install adobe-flashplugin
+apt-get install flashplugin-installer
 
 # install cpanm before install Vimana
 wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
