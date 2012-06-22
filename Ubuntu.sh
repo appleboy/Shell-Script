@@ -16,6 +16,7 @@
 #   2012/02/24 add multiget
 #   2012/06/16 add smplayer and remove some installer
 #   2012/06/17 add mysql server, xdebug, ImageMagic, modified flash path, livereload, compass tool
+#   2012/06/22 add gcin setting
 #
 ################################################################################
 
@@ -159,6 +160,8 @@ apt-get -y hime im-config
 
 # install gcin
 apt-get -y gcin
+# http://ahhafree.blogspot.tw/2011/11/gcin.html
+gsettings set com.canonical.Unity.Panel systray-whitelist "['all']"
 
 # install ImageMagic
 aptitude -y install imagemagick
