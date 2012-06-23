@@ -17,6 +17,7 @@
 #   2012/06/16 add smplayer and remove some installer
 #   2012/06/17 add mysql server, xdebug, ImageMagic, modified flash path, livereload, compass tool
 #   2012/06/22 add gcin setting
+#   2012/06/22 add google chrome browser
 #
 ################################################################################
 
@@ -123,43 +124,43 @@ chmod 755 /usr/bin/cpanm
 cpanm Vimana
 
 # install ruby
-apt-get -y install ruby rake rubygems
+aptitude -y install ruby rake rubygems
 
 # install mercurial
-apt-get -y install mercurial
+aptitude -y install mercurial
 
 # install ffmpeg
-apt-get -y install ffmpeg
+aptitude -y install ffmpeg
 
 # install irssi
-apt-get -y install irssi
+aptitude -y install irssi
 
 # install irc chat (XChat)
-apt-get -y install xchat
+aptitude -y install xchat
 
 # install python easy_install
-apt-get -y install python-pip
+aptitude -y install python-pip
 
 # install mp3 easytag
-apt-get -y install easytag
+aptitude -y install easytag
 
 # install terminal multiplexer (http://tmux.sourceforge.net/)
-apt-get -y install tmux
+aptitude -y install tmux
 
 # install multiget (http://multiget.sourceforge.net/)
-apt-get -y install multiget
+aptitude -y install multiget
 
 # install 7zip
-apt-get -y install p7zip-full
+aptitude -y install p7zip-full
 
 # install smplayer
-apt-get -y install smplayer
+aptitude -y install smplayer
 
 # install hime (http://hime.luna.com.tw/)
-apt-get -y hime im-config
+aptitude -y install hime im-config
 
 # install gcin
-apt-get -y gcin
+aptitude -y install gcin
 # http://ahhafree.blogspot.tw/2011/11/gcin.html
 gsettings set com.canonical.Unity.Panel systray-whitelist "['all']"
 
@@ -173,3 +174,6 @@ update_rubygems
 # install compass tool and livereload
 gem install compass
 gem install guard-livereload
+
+# install google chrome browser
+aptitude -y install google-chrome-stable
