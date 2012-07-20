@@ -3,182 +3,225 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
+# modified: 2012/07/20
 #
 # Program:
 #   Install all Ubuntu program automatically
 #
-# History:
-#   2011/04/18 (first release)
-#   2011/09/03 add ffmpeg, irssi and xchat package
-#   2011/10/08 add python easy install
-#   2011/10/23 add mp3 player and easytag
-#   2012/01/17 add terminal multiplexer
-#   2012/02/24 add multiget
-#   2012/06/16 add smplayer and remove some installer
-#   2012/06/17 add mysql server, xdebug, ImageMagic, modified flash path, livereload, compass tool
-#   2012/06/22 add gcin setting
-#   2012/06/22 add google chrome browser
-#   2012/06/29 add sublime-text editor
-#
 ################################################################################
 
-# install Ubuntu PPA
-add-apt-repository -y ppa:webupd8team/sublime-text-2
-add-apt-repository -y ppa:geany-dev/ppa
-add-apt-repository -y ppa:pidgin-developers/ppa
-add-apt-repository -y ppa:amsn-daily/ppa
+function usage()
+{
+    echo 'Usage: '$0' [--help|-h] --install [server|desktop|initial|all]'
+    exit 1;
+}
 
-# update package and upgrade Ubuntu
-apt-get -y update && apt-get -y upgrade
-# terminal-based package manager (terminal interface only)
-apt-get -y install aptitude
+function displayErr()
+{
+    echo
+    echo $1;
+    echo
+    exit 1;
+}
 
-aptitude -y install openssh-server
-aptitude -y install build-essential
-aptitude -y install git
-aptitude -y install subversion
-aptitude -y install bison
-aptitude -y install flex
-aptitude -y install gettext
-aptitude -y install g++
-aptitude -y install libncurses5-dev
-aptitude -y install libncursesw5-dev
-aptitude -y install exuberant-ctags
-aptitude -y install sharutils
-aptitude -y install help2man
-aptitude -y install zlib1g-dev libssl-dev
-# for samba 3.0.2
-aptitude -y install gawk
-# for Ralink
-aptitude -y install libid3tag0-dev
-aptitude -y install libgdbm-dev
-aptitude -y install xinetd nfs-kernel-server minicom build-essential libncurses5-dev uboot-mkimage autoconf automake
-aptitude -y install qt4-make
+function initial()
+{
+    # update package and upgrade Ubuntu
+    apt-get -y update && apt-get -y upgrade
+    # terminal-based package manager (terminal interface only)
+    apt-get -y install aptitude
+}
 
-# terminal-based package manager (terminal interface only)
-aptitude -y install aptitude
+function server()
+{
+    aptitude -y install openssh-server
+    aptitude -y install build-essential
+    aptitude -y install git
+    aptitude -y install subversion
+    aptitude -y install bison
+    aptitude -y install flex
+    aptitude -y install gettext
+    aptitude -y install g++
+    aptitude -y install libncurses5-dev
+    aptitude -y install libncursesw5-dev
+    aptitude -y install exuberant-ctags
+    aptitude -y install sharutils
+    aptitude -y install help2man
+    aptitude -y install zlib1g-dev libssl-dev
+    aptitude -y install gawk
+    aptitude -y install libid3tag0-dev
+    aptitude -y install libgdbm-dev
+    aptitude -y install xinetd nfs-kernel-server minicom build-essential libncurses5-dev uboot-mkimage autoconf automake
+    aptitude -y install qt4-make
 
-# git core
-aptitude -y install git-core git-doc git-gui
+    # install git from kernel git://git.kernel.org/pub/scm/git/git.git
+    aptitude -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
 
-# Installer for Microsoft TrueType core fonts
-aptitude -y install ttf-mscorefonts-installer
-aptitude -y purge ttf-mscorefonts-installer ubuntu-restricted-extras
+    # git core
+    aptitude -y install git-core git-doc git-gui
 
-# program tool: geany
-aptitude -y install geany
+    # vim
+    aptitude -y install vim
 
-# pidgin + msn-pecan
-aptitude -y install pidgin msn-pecan
+    # apache mpm worker mod_fcgid
+    aptitude -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
+    aptitude -y install apache2 php5 php5-gd php5-curl
 
-# aMSN
-# ref: https://launchpad.net/~amsn-daily/+archive/ppa
-aptitude -y install aMSN
+    # php xdebug
+    aptitude -y install php5-dev
+    aptitude -y install php-pear
+    pecl install xdebug
 
-# filezilla
-aptitude -y install filezilla
+    # install mysql server and phpmyadmin
+    aptitude -y install mysql-server phpmyadmin
 
-# vim
-aptitude -y install vim
+    # man program
+    aptitude -y install most
 
-# PCMan
-aptitude -y install pcmanx-gtk2
+    # version tool: subversion program
+    aptitude -y install subversion
 
-# apache mpm worker mod_fcgid
-aptitude -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
-aptitude -y install apache2 php5 php5-gd php5-curl
+    # grep-like program specifically for large source trees
+    aptitude -y install ack-grep
 
-# php xdebug
-aptitude -y install php5-dev
-aptitude -y install php-pear
-pecl install xdebug
+    # install ruby
+    aptitude -y install ruby rake rubygems
 
-# install mysql server and phpmyadmin
-aptitude -y install mysql-server phpmyadmin
+    # install mercurial
+    aptitude -y install mercurial
 
-# man program
-aptitude -y install most
+    # install ffmpeg
+    aptitude -y install ffmpeg
 
-# version tool: subversion program
-aptitude -y install subversion
+    # install irssi
+    aptitude -y install irssi
 
-# grep-like program specifically for large source trees
-aptitude -y install ack-grep
+    # install python easy_install
+    aptitude -y install python-pip
 
-# graphical tool to diff and merge files
-aptitude -y install meld
+    # install terminal multiplexer (http://tmux.sourceforge.net/)
+    aptitude -y install tmux
 
-# install git from kernel git://git.kernel.org/pub/scm/git/git.git
-aptitude -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
+    # install ImageMagic
+    aptitude -y install imagemagick
 
-# install java enviriment
-aptitude -y install sun-java6-jre sun-java6-plugin sun-java6-fonts
+    # update rubygems
+    gem install rubygems-update
+    update_rubygems
 
-# install adobe flash plugin
-aptitude -y install flashplugin-installer
+    # install compass tool and livereload
+    gem install compass
+    gem install guard-livereload
 
-# install cpanm before install Vimana
-wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
-chmod 755 /usr/bin/cpanm
-cpanm Vimana
+    # install PPA purge command
+    aptitude -y install ppa-purge
 
-# install ruby
-aptitude -y install ruby rake rubygems
+    # install cpanm before install Vimana
+    wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
+    chmod 755 /usr/bin/cpanm
+    cpanm Vimana
+}
 
-# install mercurial
-aptitude -y install mercurial
+function desktop()
+{
+    # install Ubuntu PPA
+    add-apt-repository -y ppa:webupd8team/sublime-text-2
+    add-apt-repository -y ppa:geany-dev/ppa
+    add-apt-repository -y ppa:pidgin-developers/ppa
+    add-apt-repository -y ppa:amsn-daily/ppa
 
-# install ffmpeg
-aptitude -y install ffmpeg
+    # Installer for Microsoft TrueType core fonts
+    aptitude -y install ttf-mscorefonts-installer
+    aptitude -y purge ttf-mscorefonts-installer ubuntu-restricted-extras
 
-# install irssi
-aptitude -y install irssi
+    # program tool: geany
+    aptitude -y install geany
 
-# install irc chat (XChat)
-aptitude -y install xchat
+    # pidgin + msn-pecan
+    aptitude -y install pidgin msn-pecan
 
-# install python easy_install
-aptitude -y install python-pip
+    # aMSN
+    # ref: https://launchpad.net/~amsn-daily/+archive/ppa
+    aptitude -y install aMSN
 
-# install mp3 easytag
-aptitude -y install easytag
+    # filezilla
+    aptitude -y install filezilla
 
-# install terminal multiplexer (http://tmux.sourceforge.net/)
-aptitude -y install tmux
+    # PCMan
+    aptitude -y install pcmanx-gtk2
 
-# install multiget (http://multiget.sourceforge.net/)
-aptitude -y install multiget
+    # graphical tool to diff and merge files
+    aptitude -y install meld
 
-# install 7zip
-aptitude -y install p7zip-full
+    # install java enviriment
+    aptitude -y install sun-java6-jre sun-java6-plugin sun-java6-fonts
 
-# install smplayer
-aptitude -y install smplayer
+    # install adobe flash plugin
+    aptitude -y install flashplugin-installer
 
-# install hime (http://hime.luna.com.tw/)
-aptitude -y install hime im-config
+    # install mp3 easytag
+    aptitude -y install easytag
 
-# install gcin
-aptitude -y install gcin
-# http://ahhafree.blogspot.tw/2011/11/gcin.html
-gsettings set com.canonical.Unity.Panel systray-whitelist "['all']"
+    # install multiget (http://multiget.sourceforge.net/)
+    aptitude -y install multiget
 
-# install ImageMagic
-aptitude -y install imagemagick
+    # install 7zip
+    aptitude -y install p7zip-full
 
-# update rubygems
-gem install rubygems-update
-update_rubygems
+    # install smplayer
+    aptitude -y install smplayer
 
-# install compass tool and livereload
-gem install compass
-gem install guard-livereload
+    # install hime (http://hime.luna.com.tw/)
+    aptitude -y install hime im-config
 
-# install google chrome browser
-aptitude -y install google-chrome-stable
+    # install gcin
+    aptitude -y install gcin
+    # http://ahhafree.blogspot.tw/2011/11/gcin.html
+    gsettings set com.canonical.Unity.Panel systray-whitelist "['all']"
 
-# install sublime-text editor
-aptitude -y install sublime-text
+    # install google chrome browser
+    aptitude -y install google-chrome-stable
 
-# install PPA purge command
-aptitude -y install ppa-purge
+    # install sublime-text editor
+    aptitude -y install sublime-text
+}
+
+# Process command line...
+while [ $# -gt 0 ]; do
+    case $1 in
+        --help | -h)
+            usage $0
+        ;;
+        --install) shift; action=$1; shift; ;;
+        *) usage $0; ;;
+    esac
+done
+
+if [ "`whoami`" != "root" ] ; then
+    displayErr "You are not root, please execute sudo su - command"
+fi
+
+test -z $action && usage $0
+
+case $action in
+    "desktop")
+        initial
+        desktop
+        ;;
+    "server")
+        initial
+        server
+        ;;
+    "initial")
+        initial
+        ;;
+    "all")
+        initial
+        server
+        desktop
+        ;;
+    *)
+        usage $0
+        ;;
+esac
+exit 1;
