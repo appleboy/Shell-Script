@@ -34,6 +34,9 @@ function initial()
 
 function server()
 {
+    # install Ubuntu PPA
+    add-apt-repository -y ppa:nginx/stable
+
     aptitude -y install openssh-server
     aptitude -y install build-essential
     aptitude -y install git
@@ -65,12 +68,15 @@ function server()
 
     # apache mpm worker mod_fcgid
     aptitude -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
-    aptitude -y install apache2 php5 php5-gd php5-curl
+    aptitude -y install apache2 php5 php5-gd php5-curl php5-fpm
 
     # php xdebug
     aptitude -y install php5-dev
     aptitude -y install php-pear
     pecl install xdebug
+
+    # install nginx web server
+    aptitude -y install nginx
 
     # install mysql server and phpmyadmin
     aptitude -y install mysql-server phpmyadmin
