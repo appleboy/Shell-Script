@@ -116,6 +116,10 @@ function server()
     # install PPA purge command
     aptitude -y install ppa-purge
 
+    # remove nfs and rpcbind
+    aptitude -y --purge remove nfs-common
+    aptitude -y --purge remove rpcbind
+
     # install cpanm before install Vimana
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
