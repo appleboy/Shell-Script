@@ -63,6 +63,9 @@ function server()
     # git core
     aptitude -y install git-core git-doc git-gui
 
+    # makepasswd command
+    aptitude -y install makepasswd
+
     # vim
     aptitude -y install vim
 
