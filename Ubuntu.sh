@@ -175,6 +175,9 @@ function desktop()
     # install mp3 easytag
     aptitude -y install easytag
 
+    # install mp3 player
+    aptitude -y install exaile
+
     # install multiget (http://multiget.sourceforge.net/)
     aptitude -y install multiget
 
