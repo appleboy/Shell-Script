@@ -125,6 +125,9 @@ function server()
     # install PPA purge command
     aptitude -y install ppa-purge
 
+    # install sshfs command
+    aptitude -y install sshfs
+
     # remove nfs and rpcbind
     aptitude -y --purge remove nfs-common
     aptitude -y --purge remove rpcbind
