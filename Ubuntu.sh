@@ -195,6 +195,9 @@ function desktop()
 
     # install gcin
     aptitude -y install gcin
+    # install gcin library
+    aptitude -y gcin-chewing
+    aptitude -y gcin-anthy
     # http://ahhafree.blogspot.tw/2011/11/gcin.html
     gsettings set com.canonical.Unity.Panel systray-whitelist "['all']"
 
