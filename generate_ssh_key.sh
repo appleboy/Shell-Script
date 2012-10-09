@@ -9,6 +9,7 @@
 #
 # History:
 #   2011/06/16 (first release)
+#   2012/10/09 (check id_rsa and id_rsa.pub exist)
 #
 ################################################################################
 
@@ -33,7 +34,8 @@ if [ "$#" -lt "1" ]; then
     usage $0
 fi
 
-test -d ~/.ssh && displayErr "Please remove or backup .ssh folder first"
+test -e ~/.ssh/id_rsa && displayErr "Please remove or backup ~/.ssh/id_rsa file first"
+test -e ~/.ssh/id_rsa.pub && displayErr "Please remove or backup ~/.ssh/id_rsa.pub file first"
 
 mkdir -p ~/.ssh
 ssh-keygen -t rsa -C $1
