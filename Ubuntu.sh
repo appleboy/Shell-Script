@@ -3,16 +3,19 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2012/07/20
+# modified: 2012/10/13
 #
 # Program:
 #   Install all Ubuntu program automatically
+#
+# log:
+#   2012.10.13 add clean previous kernels function after update
 #
 ################################################################################
 
 function usage()
 {
-    echo 'Usage: '$0' [--help|-h] --install [server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] --install [clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -208,6 +211,14 @@ function desktop()
     aptitude -y install sublime-text
 }
 
+function clean-kernel()
+{
+    # update all software
+    aptitude -y update
+    aptitude -y upgrade
+    dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs aptitude -y purge
+}
+
 # Process command line...
 while [ $# -gt 0 ]; do
     case $1 in
@@ -226,6 +237,9 @@ fi
 test -z $action && usage $0
 
 case $action in
+    "clean-kernel")
+        clean-kernel
+        ;;
     "desktop")
         initial
         desktop
