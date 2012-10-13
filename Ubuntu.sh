@@ -42,7 +42,6 @@ function server()
 
     aptitude -y install openssh-server
     aptitude -y install build-essential
-    aptitude -y install git
     aptitude -y install subversion
     aptitude -y install bison
     aptitude -y install flex
@@ -63,8 +62,8 @@ function server()
     # install git from kernel git://git.kernel.org/pub/scm/git/git.git
     aptitude -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
 
-    # git core
-    aptitude -y install git-core git-doc git-gui
+    # git core and git flow command
+    aptitude -y install git git-core git-doc git-gui git-flow
 
     # mkpasswd command
     aptitude -y install whois
