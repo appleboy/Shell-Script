@@ -134,6 +134,11 @@ function server()
     aptitude -y --purge remove nfs-common
     aptitude -y --purge remove rpcbind
 
+    # Don't install rar and unrar together.
+    # ref: http://yaohua.info/2012/05/19/ubuntu-extracting-rar-invalid-encoding/
+    aptitude -y --purge remove rar
+    aptitude -y install unrar
+
     # install cpanm before install Vimana
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
