@@ -3,7 +3,7 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2012/10/13
+# modified: 2012/10/19
 #
 # Program:
 #   Install all Ubuntu program automatically
@@ -138,6 +138,11 @@ function server()
     # ref: http://yaohua.info/2012/05/19/ubuntu-extracting-rar-invalid-encoding/
     aptitude -y --purge remove rar
     aptitude -y install unrar
+
+    # install nvm
+    # https://github.com/creationix/nvm
+    git clone git://github.com/creationix/nvm.git ~/nvm
+    . ~/nvm/nvm.sh
 
     # install cpanm before install Vimana
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
