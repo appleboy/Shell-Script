@@ -144,6 +144,11 @@ function server()
     git clone git://github.com/creationix/nvm.git ~/nvm
     . ~/nvm/nvm.sh
 
+    # install PHP-CS-Fixer
+    # https://github.com/fabpot/PHP-CS-Fixer
+    wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
+    chmod a+x /usr/local/bin/php-cs-fixer
+
     # install cpanm before install Vimana
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
