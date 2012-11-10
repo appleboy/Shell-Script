@@ -152,6 +152,17 @@ function server()
     # Python interface to MySQL
     aptitude -y install python-mysqldb
 
+    # install NySQL monitor
+    aptitude -y install mytop
+
+    # https://github.com/appleboy/MySQLTuner-perl
+    wget https://raw.github.com/appleboy/MySQLTuner-perl/master/mysqltuner.pl -O /usr/local/bin/mysqltuner
+    chmod a+x /usr/local/bin/mysqltuner
+
+    # https://launchpad.net/mysql-tuning-primer
+    wget https://launchpadlibrarian.net/78745738/tuning-primer.sh -O /usr/local/bin/tuning-primer
+    chmod a+x /usr/local/bin/tuning-primer
+
     # install cpanm before install Vimana
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
