@@ -3,12 +3,13 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2012/10/19
+# modified: 2013/01/08
 #
 # Program:
 #   Install all Ubuntu program automatically
 #
 # log:
+#   2013.01.08 add nvm tool, install coffee script and express server
 #   2012.10.13 add clean previous kernels function after update
 #
 ################################################################################
@@ -141,8 +142,15 @@ function server()
 
     # install nvm
     # https://github.com/creationix/nvm
-    git clone git://github.com/creationix/nvm.git ~/nvm
-    . ~/nvm/nvm.sh
+    curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+    . ~/.nvm/nvm.sh
+    nvm install v0.8.16
+    nvm use v0.8.16
+
+    # install coffee script
+    npm install -g coffee-script
+    # install express server
+    npm install -g express
 
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
