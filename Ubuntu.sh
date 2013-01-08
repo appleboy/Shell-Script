@@ -9,7 +9,7 @@
 #   Install all Ubuntu program automatically
 #
 # log:
-#   2013.01.08 add nvm tool, install coffee script and express server
+#   2013.01.08 add nvm tool, install coffee script, handlebars, RequireJS and express server
 #   2012.10.13 add clean previous kernels function after update
 #
 ################################################################################
@@ -147,10 +147,14 @@ function server()
     nvm install v0.8.16
     nvm use v0.8.16
 
-    # install coffee script
+    # coffee script
     npm install -g coffee-script
-    # install express server
+    # express server
     npm install -g express
+    # Handlebars.js command
+    npm install -g handlebars
+    # RequireJS command line tool
+    npm install -g requirejs
 
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
