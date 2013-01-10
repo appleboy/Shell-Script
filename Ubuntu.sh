@@ -142,10 +142,10 @@ function server()
 
     # install nvm
     # https://github.com/creationix/nvm
-    curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+    curl https://raw.github.com/appleboy/nvm/develop/install.sh | sh
     . ~/.nvm/nvm.sh
-    nvm install v0.8.16
-    nvm use v0.8.16
+    nvm install stable
+    nvm use stable
 
     # coffee script
     npm install -g coffee-script
@@ -155,6 +155,8 @@ function server()
     npm install -g handlebars
     # RequireJS command line tool
     npm install -g requirejs
+    # transfer javascript to coffee script tool
+    npm install -g js2coffee
 
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
