@@ -9,6 +9,7 @@
 #   Install all Ubuntu program automatically
 #
 # log:
+#   2013.01.19 add bower package
 #   2013.01.08 add nvm tool, install coffee script, handlebars, RequireJS and express server
 #   2012.10.13 add clean previous kernels function after update
 #
@@ -157,6 +158,8 @@ function server()
     npm install -g requirejs
     # transfer javascript to coffee script tool
     npm install -g js2coffee
+    # install twitter bower package
+    npm install -g bower
 
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
