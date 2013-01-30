@@ -77,11 +77,6 @@ function server()
     aptitude -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
     aptitude -y install apache2 php5 php5-gd php5-curl php5-fpm php5-xdebug php-apc php5-memcache
 
-    # php xdebug
-    aptitude -y install php5-dev
-    aptitude -y install php-pear
-    pecl install xdebug
-
     # install nginx web server
     aptitude -y install nginx
 
