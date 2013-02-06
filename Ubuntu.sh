@@ -3,12 +3,13 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2013/01/08
+# modified: 2013/02/06
 #
 # Program:
 #   Install all Ubuntu program automatically
 #
 # log:
+#   2013.02.06 add UglifyJS tool v1 and v2.
 #   2013.01.08 add nvm tool, install coffee script, handlebars, RequireJS and express server
 #   2012.10.13 add clean previous kernels function after update
 #
@@ -157,6 +158,10 @@ function server()
     npm install -g requirejs
     # transfer javascript to coffee script tool
     npm install -g js2coffee
+    # UglifyJS 2
+    npm install -g uglify-js
+    # UglifyJS 1
+    npm install -g uglify-js@1
 
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
