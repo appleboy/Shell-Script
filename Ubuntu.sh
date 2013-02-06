@@ -10,6 +10,7 @@
 #
 # log:
 #   2013.02.06 add UglifyJS tool v1 and v2.
+#   2013.01.19 add bower package
 #   2013.01.08 add nvm tool, install coffee script, handlebars, RequireJS and express server
 #   2012.10.13 add clean previous kernels function after update
 #
@@ -76,11 +77,6 @@ function server()
     # apache mpm worker mod_fcgid
     aptitude -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
     aptitude -y install apache2 php5 php5-gd php5-curl php5-fpm php5-xdebug php-apc php5-memcache
-
-    # php xdebug
-    aptitude -y install php5-dev
-    aptitude -y install php-pear
-    pecl install xdebug
 
     # install nginx web server
     aptitude -y install nginx
@@ -162,6 +158,8 @@ function server()
     npm install -g uglify-js
     # UglifyJS 1
     npm install -g uglify-js@1
+    # install twitter bower package
+    npm install -g bower
 
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
