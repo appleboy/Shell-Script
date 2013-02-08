@@ -3,12 +3,13 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2013/02/06
+# modified: 2013/02/08
 #
 # Program:
 #   Install all Ubuntu program automatically
 #
 # log:
+#   2013.02.08 add MariaDB server
 #   2013.02.06 add UglifyJS tool v1 and v2.
 #   2013.01.19 add bower package
 #   2013.01.08 add nvm tool, install coffee script, handlebars, RequireJS and express server
@@ -36,6 +37,16 @@ function initial()
     apt-get -y update && apt-get -y upgrade
     # terminal-based package manager (terminal interface only)
     apt-get -y install aptitude
+}
+
+function install_mariadb()
+{
+    ubuntu_name=`lsb_release -c | awk -F " " '{printf $2}'`
+    aptitude -y install python-software-properties
+    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+    add-apt-repository "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/ubuntu ${ubuntu_name} main"
+    aptitude -y update
+    aptitude -y install mariadb-server
 }
 
 function server()
@@ -81,8 +92,9 @@ function server()
     # install nginx web server
     aptitude -y install nginx
 
-    # install mysql server and phpmyadmin
-    aptitude -y install mysql-server phpmyadmin
+    # install MariaDB server and phpmyadmin
+    install_mariadb
+    aptitude -y install phpmyadmin
 
     # man program
     aptitude -y install most
