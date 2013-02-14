@@ -46,7 +46,11 @@ function install_mariadb()
     version_name=`lsb_release -c | awk -F " " '{printf $2}' | tr A-Z a-z`
     aptitude -y install python-software-properties
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-    add-apt-repository "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main"
+    if [ "$server_name" == "debian" ] ; then
+        echo "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main" >> /etc/apt/sources.list
+    else
+        add-apt-repository "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main"
+    fi
     aptitude -y update
     aptitude -y install mariadb-server
 }
