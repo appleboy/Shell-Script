@@ -61,7 +61,7 @@ function server()
     # install Ubuntu PPA
     add-apt-repository -y ppa:nginx/stable
 
-    aptitude -y install openssh-server
+    aptitude -y install openssh-server sudo
     aptitude -y install build-essential
     aptitude -y install subversion
     aptitude -y install bison
