@@ -92,9 +92,8 @@ function server()
     # install nginx web server
     aptitude -y install nginx
 
-    # install MariaDB server and phpmyadmin
+    # install MariaDB server
     install_mariadb
-    aptitude -y install phpmyadmin
 
     # man program
     aptitude -y install most
@@ -191,6 +190,9 @@ function server()
     # https://launchpad.net/mysql-tuning-primer
     wget https://launchpadlibrarian.net/78745738/tuning-primer.sh -O /usr/local/bin/tuning-primer
     chmod a+x /usr/local/bin/tuning-primer
+
+    # install phpMyAdmin
+    aptitude -y install phpmyadmin
 
     # install cpanm before install Vimana
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
