@@ -185,9 +185,6 @@ server() {
     wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
     chmod a+x /usr/local/bin/php-cs-fixer
 
-    # Python interface to MySQL
-    aptitude -y install python-mysqldb
-
     # install NySQL monitor
     aptitude -y install mytop
 
@@ -209,6 +206,9 @@ server() {
 
     # install phpMyAdmin
     aptitude -y install phpmyadmin
+
+    # Python interface to MySQL
+    aptitude -y install python-mysqldb
 }
 
 desktop() {
