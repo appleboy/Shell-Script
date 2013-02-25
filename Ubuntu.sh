@@ -45,10 +45,17 @@ initial() {
 
 install_mariadb() {
     output "Install Mariadb Server."
-    ubuntu_name=`lsb_release -c | awk -F " " '{printf $2}'`
+    # get sever os name: ubuntu or debian
+    server_name=`lsb_release -i | awk -F " " '{printf $3}' | tr A-Z a-z`
+    version_name=`lsb_release -c | awk -F " " '{printf $2}' | tr A-Z a-z`
     aptitude -y install python-software-properties
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-    add-apt-repository "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/ubuntu ${ubuntu_name} main"
+    # repository url ref: https://downloads.mariadb.org/mariadb/repositories/
+    if [ "$server_name" == "debian" ] ; then
+        echo "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main" >> /etc/apt/sources.list
+    else
+        add-apt-repository "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main"
+    fi
     aptitude -y update
     aptitude -y install mariadb-server
 }
@@ -58,7 +65,7 @@ server() {
     # install Ubuntu PPA
     add-apt-repository -y ppa:nginx/stable
 
-    aptitude -y install openssh-server
+    aptitude -y install openssh-server sudo
     aptitude -y install build-essential
     aptitude -y install subversion
     aptitude -y install bison
@@ -95,10 +102,6 @@ server() {
 
     # install nginx web server
     aptitude -y install nginx
-
-    # install MariaDB server and phpmyadmin
-    install_mariadb
-    aptitude -y install phpmyadmin
 
     # man program
     aptitude -y install most
@@ -200,6 +203,12 @@ server() {
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
     cpanm Vimana
+
+    # install MariaDB server
+    install_mariadb
+
+    # install phpMyAdmin
+    aptitude -y install phpmyadmin
 }
 
 desktop() {
@@ -311,6 +320,9 @@ case $action in
         ;;
     "initial")
         initial
+        ;;
+    "install-db")
+        install_mariadb
         ;;
     "all")
         initial
