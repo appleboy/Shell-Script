@@ -48,6 +48,9 @@ install_mariadb() {
     # get sever os name: ubuntu or debian
     server_name=`lsb_release -i | awk -F " " '{printf $3}' | tr A-Z a-z`
     version_name=`lsb_release -c | awk -F " " '{printf $2}' | tr A-Z a-z`
+    # Ubuntu 12.10 don't support python-software-properties
+    # http://blog.xrmplatform.org/solution-for-add-apt-repository-command-not-found-ubuntu-12-10-server/
+    aptitude -y install software-properties-common
     aptitude -y install python-software-properties
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
     # repository url ref: https://downloads.mariadb.org/mariadb/repositories/
@@ -95,6 +98,9 @@ server() {
 
     # vim
     aptitude -y install vim
+
+    # install MariaDB server
+    install_mariadb
 
     # apache mpm worker mod_fcgid
     aptitude -y install apache2.2-bin apache2.2-common apache2-mpm-worker libapache2-mod-fcgid php5-cli php5-cgi php5-common
@@ -200,12 +206,6 @@ server() {
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
     cpanm Vimana
-
-    # install MariaDB server
-    install_mariadb
-
-    # install phpMyAdmin
-    aptitude -y install phpmyadmin
 
     # Python interface to MySQL
     aptitude -y install python-mysqldb
