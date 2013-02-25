@@ -18,7 +18,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] --install [clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] --install [install-db|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
