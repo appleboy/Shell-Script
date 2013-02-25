@@ -17,30 +17,34 @@
 #
 ################################################################################
 
-function usage()
-{
+usage() {
     echo 'Usage: '$0' [--help|-h] --install [clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
-function displayErr()
-{
+output() {
+    printf "\E[0;33;40m"
+    echo $1
+    printf "\E[0m"
+}
+
+displayErr() {
     echo
     echo $1;
     echo
     exit 1;
 }
 
-function initial()
-{
+initial() {
+    output "Update all packages and install aptitude tool command."
     # update package and upgrade Ubuntu
     apt-get -y update && apt-get -y upgrade
     # terminal-based package manager (terminal interface only)
     apt-get -y install aptitude
 }
 
-function install_mariadb()
-{
+install_mariadb() {
+    output "Install Mariadb Server."
     ubuntu_name=`lsb_release -c | awk -F " " '{printf $2}'`
     aptitude -y install python-software-properties
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
@@ -49,8 +53,8 @@ function install_mariadb()
     aptitude -y install mariadb-server
 }
 
-function server()
-{
+server() {
+    output "Install Server Packages."
     # install Ubuntu PPA
     add-apt-repository -y ppa:nginx/stable
 
@@ -198,8 +202,8 @@ function server()
     cpanm Vimana
 }
 
-function desktop()
-{
+desktop() {
+    output "Install Desktop Packages."
     # install Ubuntu PPA
     add-apt-repository -y ppa:webupd8team/sublime-text-2
     add-apt-repository -y ppa:geany-dev/ppa
@@ -268,8 +272,8 @@ function desktop()
     aptitude -y install sublime-text
 }
 
-function clean-kernel()
-{
+clean-kernel() {
+    output "Cleaning old Kernel source."
     # update all software
     aptitude -y update
     aptitude -y upgrade
