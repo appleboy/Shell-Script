@@ -19,7 +19,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] --install [mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -298,8 +298,14 @@ while [ $# -gt 0 ]; do
         --help | -h)
             usage $0
         ;;
-        --install) shift; action=$1; shift; ;;
-        *) usage $0; ;;
+        --install | -i)
+            shift
+            action=$1
+            shift
+            ;;
+        *)
+            usage $0
+            ;;
     esac
 done
 
