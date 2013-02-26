@@ -3,12 +3,13 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2013/02/08
+# modified: 2013/02/26
 #
 # Program:
 #   Install all Ubuntu program automatically
 #
 # log:
+#   2013.02.26 fixed apache2 mpm worker and add php5.4 stable
 #   2013.02.08 add MariaDB server
 #   2013.02.06 add UglifyJS tool v1 and v2.
 #   2013.01.19 add bower package
@@ -18,7 +19,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] --install [install-db|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] --install [mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -323,7 +324,7 @@ case $action in
     "initial")
         initial
         ;;
-    "install-db")
+    "mariadb")
         install_mariadb
         ;;
     "all")
