@@ -40,7 +40,7 @@ while [ $# -gt 0 ]; do
             usage $0
         ;;
         *)
-            action=$0
+            action=$1
             shift;
         ;;
     esac
