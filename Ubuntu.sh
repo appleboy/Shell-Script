@@ -3,18 +3,10 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2013/02/26
+# modified: 2013/03/25
 #
 # Program:
 #   Install all Ubuntu program automatically
-#
-# log:
-#   2013.02.26 fixed apache2 mpm worker and add php5.4 stable
-#   2013.02.08 add MariaDB server
-#   2013.02.06 add UglifyJS tool v1 and v2.
-#   2013.01.19 add bower package
-#   2013.01.08 add nvm tool, install coffee script, handlebars, RequireJS and express server
-#   2012.10.13 add clean previous kernels function after update
 #
 ################################################################################
 
@@ -212,6 +204,8 @@ server() {
 
     # Python interface to MySQL
     aptitude -y install python-mysqldb
+    # Install django-html in an HTML minifier
+    pip install django-htmlmin
 }
 
 desktop() {
