@@ -33,6 +33,14 @@ initial() {
     yum -y update && yum -y upgrade
 }
 
+server() {
+    output "Install Server Packages."
+    yum -y install make git tmux wget
+
+    # install web server
+    yum -y install nginx
+}
+
 # Process command line...
 while [ $# -gt 0 ]; do
     case $1 in
@@ -52,10 +60,9 @@ case $action in
     "initial")
         initial
         ;;
-    "all")
+    "server")
         initial
         server
-        desktop
         ;;
     *)
         usage $0
