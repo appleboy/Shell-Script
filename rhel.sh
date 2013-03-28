@@ -33,7 +33,22 @@ initial() {
     yum -y update && yum -y upgrade
 }
 
+remove_package() {
+    # ref http://www.cyberciti.biz/faq/centos-redhat-rhel-fedora-remove-nfs-services/
+    output "Remove unnecessary Server Packages."
+    chkconfig nfslock off
+    chkconfig rpcgssd off
+    chkconfig rpcidmapd off
+    chkconfig portmap off
+    chkconfig nfs off
+    chkconfig cups off
+    yum -y remove portmap nfs-utils cups
+
+}
+
 server() {
+    # Remove unnecessary Packages.
+    remove_package
     output "Install Server Packages."
     yum -y install make git tmux wget
 
