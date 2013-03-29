@@ -9,3 +9,7 @@ If you want send-pr fot freebsd ports, it can generate pkg_plist file automatica
 ## Ubuntu.sh [for Ubuntu]
 
 Install ubuntu program, library, desktop tool automatically.
+
+## rhel.sh [for CentOS 6.x]
+
+Install CentOS program, library, desktop tool automatically.
