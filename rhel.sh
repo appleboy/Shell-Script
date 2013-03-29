@@ -79,8 +79,9 @@ server() {
     wget http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
     rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm
     # install web server.
-    yum -y install nginx haproxy
+    yum -y install nginx haproxy xinetd
     chkconfig nginx on
+    chkconfig haproxy on
 }
 
 # Process command line...
