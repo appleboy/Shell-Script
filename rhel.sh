@@ -46,6 +46,19 @@ remove_package() {
 
 }
 
+# Installing RHEL EPEL Repo on Centos 5.x or 6.x
+# ref: http://www.rackspace.com/knowledge_center/article/installing-rhel-epel-repo-on-centos-5x-or-6x
+install_epel() {
+    # Centos 5.x
+    # wget http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+    # wget http://rpms.famillecollet.com/enterprise/remi-release-5.rpm
+    # rpm -Uvh remi-release-5*.rpm epel-release-5*.rpm
+    # Centos 6.x
+    wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+    rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
+}
+
 server() {
     # Remove unnecessary Packages.
     remove_package
