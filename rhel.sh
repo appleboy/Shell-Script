@@ -70,10 +70,12 @@ server() {
     # stop iptables
     chkconfig iptables off
     /etc/init.d/iptables stop
+    # install RHEL EPEL Repo.
+    install_epel
     output "Install Server Packages."
     yum -y install make git tmux wget
 
-    # install web server
+    # install web server.
     yum -y install nginx
 }
 
