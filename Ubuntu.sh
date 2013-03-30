@@ -53,7 +53,8 @@ install_mariadb() {
         add-apt-repository "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main"
     fi
     aptitude -y update
-    aptitude -y install mariadb-server
+    # install mariadb-galera-server and galera library
+    aptitude -y install mariadb-galera-server-5.5 galera
 }
 
 server() {
