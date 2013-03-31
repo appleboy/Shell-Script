@@ -68,6 +68,10 @@ install_mariadb() {
     yum -y install MariaDB-Galera-server MariaDB-client galera
 }
 
+install_php() {
+    yum -y install php php-fpm php-mysql php-pdo php-gd
+}
+
 server() {
     # Remove unnecessary Packages.
     remove_package
