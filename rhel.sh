@@ -90,6 +90,8 @@ server() {
     yum -y install nginx haproxy xinetd
     chkconfig nginx on
     chkconfig haproxy on
+    # install MariaDB server
+    install_mariadb
 }
 
 # Process command line...
