@@ -139,9 +139,9 @@ server() {
     gem install rubygems-update
     update_rubygems
 
-    # install compass tool and livereload
+    # install compass tool and livereload (https://github.com/guard/guard-livereload)
     gem install compass
-    gem install guard-livereload
+    gem install rb-inotify guard-livereload
 
     # install PPA purge command
     aptitude -y install ppa-purge
