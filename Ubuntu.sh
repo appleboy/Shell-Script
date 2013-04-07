@@ -141,7 +141,7 @@ server() {
 
     # install compass tool and livereload (https://github.com/guard/guard-livereload)
     gem install compass
-    gem install rb-inotify guard-livereload
+    gem install rb-inotify guard-livereload yajl-ruby
 
     # install PPA purge command
     aptitude -y install ppa-purge
