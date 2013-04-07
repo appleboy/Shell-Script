@@ -202,6 +202,12 @@ server() {
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
     cpanm Vimana
+    # install some perl module
+    cpanm WWW::Shorten::Bitly
+    cpanm Data::Dumper
+    cpanm XML::Simple
+    cpanm Class::Date
+    cpanm DBD::mysql
 
     # Python interface to MySQL
     aptitude -y install python-mysqldb
