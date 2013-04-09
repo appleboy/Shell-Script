@@ -110,6 +110,9 @@ server() {
     # install MariaDB server
     install_mariadb
 
+    # install Percona backup script
+    install_percona_repository
+
     # apache mpm worker and php-fpm service
     aptitude -y install apache2-mpm-worker libapache2-mod-geoip libapache2-mod-rpaf libapache2-mod-fastcgi
     # install stable php 5.4
