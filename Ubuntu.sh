@@ -3,7 +3,7 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2013/03/25
+# modified: 2013/04/09
 #
 # Program:
 #   Install all Ubuntu program automatically
@@ -11,7 +11,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -55,6 +55,20 @@ install_mariadb() {
     aptitude -y update
     # install mariadb-galera-server and galera library
     aptitude -y install mariadb-galera-server-5.5 galera
+}
+
+install_percona_repository () {
+    output "Install Percona Repository."
+    gpg -a --export CD2EFD2A | sudo apt-key add -
+    version_name=`lsb_release -c | awk -F " " '{printf $2}' | tr A-Z a-z`
+    grep -ir "percona" /etc/apt/sources.list* > /dev/null
+    if [ $? == "1" ]; then
+        output "Add Percona Repository to /etc/apt/sources.list"
+        echo "deb http://repo.percona.com/apt ${version_name} main" >> /etc/apt/sources.list
+        echo "deb-src http://repo.percona.com/apt ${version_name} main" >> /etc/apt/sources.list
+    fi
+    aptitude -y update
+    aptitude -y install percona-xtrabackup
 }
 
 server() {
@@ -333,6 +347,9 @@ case $action in
         ;;
     "mariadb")
         install_mariadb
+        ;;
+    "percona")
+        install_percona_repository
         ;;
     "all")
         initial
