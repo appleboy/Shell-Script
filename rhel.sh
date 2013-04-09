@@ -68,6 +68,12 @@ install_mariadb() {
     yum -y install MariaDB-Galera-server MariaDB-client galera
 }
 
+install_percona_repository () {
+    # replacing x86_64 with i386 if you are not running a 64-bit operating system
+    rpm -Uhv http://www.percona.com/downloads/percona-release/percona-release-0.0-1.x86_64.rpm
+    yum -y install percona-xtrabackup
+}
+
 install_php() {
     yum -y install php php-fpm php-mysql php-pdo php-gd
 }
@@ -90,8 +96,12 @@ server() {
     yum -y install nginx haproxy xinetd
     chkconfig nginx on
     chkconfig haproxy on
+
     # install MariaDB server
     install_mariadb
+
+    # install Percona backup script
+    install_percona_repository
 }
 
 # Process command line...
