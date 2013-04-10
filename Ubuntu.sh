@@ -212,7 +212,7 @@ server() {
     chmod a+x /usr/local/bin/mysqltuner
 
     # https://launchpad.net/mysql-tuning-primer
-    wget https://launchpadlibrarian.net/78745738/tuning-primer.sh -O /usr/local/bin/tuning-primer
+    wget https://launchpad.net/mysql-tuning-primer/trunk/1.6-r1/+download/tuning-primer.sh -O /usr/local/bin/tuning-primer
     chmod a+x /usr/local/bin/tuning-primer
 
     # install cpanm before install Vimana

@@ -10,7 +10,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [initial]'
+    echo 'Usage: '$0' [--help|-h] [percona|mariadb|server|initial]'
     exit 1;
 }
 
@@ -102,6 +102,14 @@ server() {
 
     # install Percona backup script
     install_percona_repository
+
+    # https://github.com/appleboy/MySQLTuner-perl
+    wget https://raw.github.com/appleboy/MySQLTuner-perl/master/mysqltuner.pl -O /usr/local/bin/mysqltuner
+    chmod a+x /usr/local/bin/mysqltuner
+
+    # https://launchpad.net/mysql-tuning-primer
+    wget https://launchpad.net/mysql-tuning-primer/trunk/1.6-r1/+download/tuning-primer.sh -O /usr/local/bin/tuning-primer
+    chmod a+x /usr/local/bin/tuning-primer
 }
 
 # Process command line...
@@ -126,6 +134,12 @@ case $action in
     "server")
         initial
         server
+        ;;
+    "mariadb")
+        install_mariadb
+        ;;
+    "percona")
+        install_percona_repository
         ;;
     *)
         usage $0
