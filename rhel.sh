@@ -110,6 +110,13 @@ server() {
     # https://launchpad.net/mysql-tuning-primer
     wget https://launchpad.net/mysql-tuning-primer/trunk/1.6-r1/+download/tuning-primer.sh -O /usr/local/bin/tuning-primer
     chmod a+x /usr/local/bin/tuning-primer
+
+    # install gcc
+    yum -y install gcc python-devel
+
+    # install python pip tool and fabric command
+    yum -y install python-pip
+    pip-python install fabric
 }
 
 # Process command line...
