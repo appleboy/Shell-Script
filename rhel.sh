@@ -75,7 +75,7 @@ install_percona_repository () {
 }
 
 install_php() {
-    yum -y install php php-fpm php-mysql php-pdo php-gd
+    yum -y install php php-fpm php-mysql php-pdo php-gd php-pecl-memcache
 }
 
 server() {
@@ -119,6 +119,9 @@ server() {
     # install python pip tool and fabric command
     yum -y install python-pip
     pip-python install fabric
+
+    # install memcached
+    yum -y install memcached
 }
 
 # Process command line...
