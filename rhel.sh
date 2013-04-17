@@ -75,7 +75,7 @@ install_percona_repository () {
 }
 
 install_php() {
-    yum -y install php php-fpm php-mysql php-pdo php-gd php-pecl-memcache
+    yum -y install php php-fpm php-mysql php-pdo php-gd php-pecl-memcached
 }
 
 server() {
