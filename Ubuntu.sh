@@ -162,6 +162,9 @@ server() {
     gem install compass
     gem install rb-inotify guard-livereload yajl-ruby
 
+    # install capistrano tool
+    gem install capistrano
+
     # install PPA purge command
     aptitude -y install ppa-purge
 
