@@ -94,8 +94,6 @@ server() {
     rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm
     # install web server.
     yum -y install nginx haproxy xinetd
-    chkconfig nginx on
-    chkconfig haproxy on
     # install php
     install_php
 
@@ -122,6 +120,11 @@ server() {
 
     # install memcached
     yum -y install memcached
+
+    # start daemon
+    chkconfig nginx on
+    chkconfig haproxy on
+    chkconfig php-fpm on
 }
 
 # Process command line...
