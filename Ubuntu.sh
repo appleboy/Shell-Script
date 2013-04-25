@@ -180,6 +180,9 @@ server() {
     aptitude -y --purge remove rar
     aptitude -y install unrar
 
+    # install ftp daemon
+    aptitude -y install proftpd
+
     # install nvm
     # https://github.com/creationix/nvm
     curl https://raw.github.com/appleboy/nvm/develop/install.sh | sh
