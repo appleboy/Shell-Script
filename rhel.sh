@@ -121,6 +121,16 @@ server() {
     # install memcached
     yum -y install memcached
 
+    # install rubygems command
+    yum -y install rubygems
+
+    # update rubygems
+    gem install rubygems-update
+    update_rubygems
+
+    # install capistrano tool
+    gem install capistrano
+
     # start daemon
     chkconfig nginx on
     chkconfig haproxy on
