@@ -80,11 +80,15 @@ install_php() {
 
 install_nginx_spdy() {
     # install nginx 1.4.x up version with spdy module
-    cd /tmp && wget http://nginx.org/download/nginx-1.4.0.tar.gz
+    [ -f /tmp/nginx-1.4.0.tar.gz ] || cd /tmp && wget http://nginx.org/download/nginx-1.4.0.tar.gz
     # download openssl library
-    cd /tmp && wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
-    tar -zxvf /tmp/nginx-1.4.0.tar.gz -C /tmp
-    tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
+    [ -f /tmp/openssl-1.0.1e.tar.gz ] || cd /tmp && wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
+    [ -d /tmp/nginx-1.4.0 ] && cd /tmp/nginx-1.4.0 && make clean
+    [ -d /tmp/openssl-1.0.1e ] && rm -rf /tmp/openssl-1.0.1e
+    [ -d /tmp/nginx-1.4.0 ] || tar -zxvf /tmp/nginx-1.4.0.tar.gz -C /tmp
+    [ -d /tmp/openssl-1.0.1e ] || tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
+    # build makefile
+    cd /tmp/nginx-1.4.0 && ./configure --with-http_ssl_module --with-http_spdy_module --with-openssl=/tmp/openssl-1.0.1e
 }
 
 server() {
