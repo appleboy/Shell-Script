@@ -77,6 +77,8 @@ install_nginx_spdy() {
     cd /tmp && wget http://nginx.org/download/nginx-1.4.0.tar.gz
     # download openssl library
     cd /tmp && wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
+    tar -zxvf /tmp/nginx-1.4.0.tar.gz -C /tmp
+    tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
 }
 
 server() {
