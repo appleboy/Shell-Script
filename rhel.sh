@@ -79,16 +79,19 @@ install_php() {
 }
 
 install_nginx_spdy() {
+    # install dependence library
+    yum -y install pcre-devel openssl-devel libxslt-devel gd-devel perl-ExtUtils-Embed GeoIP-devel
     # install nginx 1.4.x up version with spdy module
-    [ -f /tmp/nginx-1.4.0.tar.gz ] || cd /tmp && wget http://nginx.org/download/nginx-1.4.0.tar.gz
+    [ -f /tmp/nginx-1.4.0.tar.gz ] || wget http://nginx.org/download/nginx-1.4.0.tar.gz -O /tmp/nginx-1.4.0.tar.gz
     # download openssl library
-    [ -f /tmp/openssl-1.0.1e.tar.gz ] || cd /tmp && wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
+    [ -f /tmp/openssl-1.0.1e.tar.gz ] || wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz -O /tmp/openssl-1.0.1e.tar.gz
     [ -d /tmp/nginx-1.4.0 ] && cd /tmp/nginx-1.4.0 && make clean
     [ -d /tmp/openssl-1.0.1e ] && rm -rf /tmp/openssl-1.0.1e
     [ -d /tmp/nginx-1.4.0 ] || tar -zxvf /tmp/nginx-1.4.0.tar.gz -C /tmp
     [ -d /tmp/openssl-1.0.1e ] || tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
     # build makefile
-    cd /tmp/nginx-1.4.0 && ./configure --with-http_ssl_module --with-http_spdy_module --with-openssl=/tmp/openssl-1.0.1e
+    cd /tmp/nginx-1.4.0 && ./configure --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --http-client-body-temp-path=/var/lib/nginx/tmp/client_body --http-proxy-temp-path=/var/lib/nginx/tmp/proxy --http-fastcgi-temp-path=/var/lib/nginx/tmp/fastcgi --http-uwsgi-temp-path=/var/lib/nginx/tmp/uwsgi --http-scgi-temp-path=/var/lib/nginx/tmp/scgi --pid-path=/var/run/nginx.pid --lock-path=/var/lock/subsys/nginx --user=nginx --group=nginx --with-file-aio --with-ipv6 --with-http_realip_module --with-http_addition_module --with-http_xslt_module --with-http_image_filter_module --with-http_geoip_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_stub_status_module --with-http_perl_module --with-mail --with-mail_ssl_module --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic' --with-ld-opt=-Wl,-E --with-http_ssl_module --with-http_spdy_module --with-openssl=/tmp/openssl-1.0.1e
+    cd /tmp/nginx-1.4.0 && make && make install
 }
 
 server() {
