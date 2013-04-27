@@ -10,7 +10,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [initial]'
+    echo 'Usage: '$0' [--help|-h] [percona|mariadb|server|initial]'
     exit 1;
 }
 
@@ -68,8 +68,14 @@ install_mariadb() {
     yum -y install MariaDB-Galera-server MariaDB-client galera
 }
 
+install_percona_repository () {
+    # replacing x86_64 with i386 if you are not running a 64-bit operating system
+    rpm -Uhv http://www.percona.com/downloads/percona-release/percona-release-0.0-1.x86_64.rpm
+    yum -y install percona-xtrabackup
+}
+
 install_php() {
-    yum -y install php php-fpm php-mysql php-pdo php-gd
+    yum -y install php php-fpm php-mysql php-pdo php-gd php-pecl-memcached
 }
 
 install_nginx_spdy() {
@@ -97,10 +103,47 @@ server() {
     rpm -ivh nginx-release-centos-6-0.el6.ngx.noarch.rpm
     # install web server.
     yum -y install nginx haproxy xinetd
-    chkconfig nginx on
-    chkconfig haproxy on
+    # install php
+    install_php
+
     # install MariaDB server
     install_mariadb
+
+    # install Percona backup script
+    install_percona_repository
+
+    # https://github.com/appleboy/MySQLTuner-perl
+    wget https://raw.github.com/appleboy/MySQLTuner-perl/master/mysqltuner.pl -O /usr/local/bin/mysqltuner
+    chmod a+x /usr/local/bin/mysqltuner
+
+    # https://launchpad.net/mysql-tuning-primer
+    wget https://launchpad.net/mysql-tuning-primer/trunk/1.6-r1/+download/tuning-primer.sh -O /usr/local/bin/tuning-primer
+    chmod a+x /usr/local/bin/tuning-primer
+
+    # install gcc
+    yum -y install gcc python-devel
+
+    # install python pip tool and fabric command
+    yum -y install python-pip
+    pip-python install fabric
+
+    # install memcached
+    yum -y install memcached
+
+    # install rubygems command
+    yum -y install rubygems
+
+    # update rubygems
+    gem install rubygems-update
+    update_rubygems
+
+    # install capistrano tool
+    gem install capistrano
+
+    # start daemon
+    chkconfig nginx on
+    chkconfig haproxy on
+    chkconfig php-fpm on
 }
 
 # Process command line...
@@ -125,6 +168,12 @@ case $action in
     "server")
         initial
         server
+        ;;
+    "mariadb")
+        install_mariadb
+        ;;
+    "percona")
+        install_percona_repository
         ;;
     *)
         usage $0

@@ -3,7 +3,7 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2013/03/25
+# modified: 2013/04/09
 #
 # Program:
 #   Install all Ubuntu program automatically
@@ -11,7 +11,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -57,6 +57,20 @@ install_mariadb() {
     aptitude -y install mariadb-galera-server-5.5 galera
 }
 
+install_percona_repository () {
+    output "Install Percona Repository."
+    gpg -a --export CD2EFD2A | sudo apt-key add -
+    version_name=`lsb_release -c | awk -F " " '{printf $2}' | tr A-Z a-z`
+    grep -ir "percona" /etc/apt/sources.list* > /dev/null
+    if [ $? == "1" ]; then
+        output "Add Percona Repository to /etc/apt/sources.list"
+        echo "deb http://repo.percona.com/apt ${version_name} main" >> /etc/apt/sources.list
+        echo "deb-src http://repo.percona.com/apt ${version_name} main" >> /etc/apt/sources.list
+    fi
+    aptitude -y update
+    aptitude -y install percona-xtrabackup
+}
+
 server() {
     output "Install Server Packages."
     # install Ubuntu PPA
@@ -96,6 +110,9 @@ server() {
     # install MariaDB server
     install_mariadb
 
+    # install Percona backup script
+    install_percona_repository
+
     # apache mpm worker and php-fpm service
     aptitude -y install apache2-mpm-worker libapache2-mod-geoip libapache2-mod-rpaf libapache2-mod-fastcgi
     # install stable php 5.4
@@ -128,6 +145,8 @@ server() {
 
     # install python easy_install
     aptitude -y install python-pip
+    # install fabric command
+    pip install fabric
 
     # install terminal multiplexer (http://tmux.sourceforge.net/)
     aptitude -y install tmux
@@ -143,6 +162,9 @@ server() {
     gem install compass
     gem install rb-inotify guard-livereload yajl-ruby
 
+    # install capistrano tool
+    gem install capistrano
+
     # install PPA purge command
     aptitude -y install ppa-purge
 
@@ -157,6 +179,9 @@ server() {
     # ref: http://yaohua.info/2012/05/19/ubuntu-extracting-rar-invalid-encoding/
     aptitude -y --purge remove rar
     aptitude -y install unrar
+
+    # install ftp daemon
+    aptitude -y install proftpd
 
     # install nvm
     # https://github.com/creationix/nvm
@@ -195,7 +220,7 @@ server() {
     chmod a+x /usr/local/bin/mysqltuner
 
     # https://launchpad.net/mysql-tuning-primer
-    wget https://launchpadlibrarian.net/78745738/tuning-primer.sh -O /usr/local/bin/tuning-primer
+    wget https://launchpad.net/mysql-tuning-primer/trunk/1.6-r1/+download/tuning-primer.sh -O /usr/local/bin/tuning-primer
     chmod a+x /usr/local/bin/tuning-primer
 
     # install cpanm before install Vimana
@@ -333,6 +358,9 @@ case $action in
         ;;
     "mariadb")
         install_mariadb
+        ;;
+    "percona")
+        install_percona_repository
         ;;
     "all")
         initial
