@@ -179,6 +179,9 @@ case $action in
     "percona")
         install_percona_repository
         ;;
+    "nginx")
+        install_nginx_spdy
+        ;;
     *)
         usage $0
         ;;
