@@ -72,6 +72,13 @@ install_php() {
     yum -y install php php-fpm php-mysql php-pdo php-gd
 }
 
+install_nginx_spdy() {
+    # install nginx 1.4.x up version with spdy module
+    cd /tmp && wget http://nginx.org/download/nginx-1.4.0.tar.gz
+    # download openssl library
+    cd /tmp && wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz
+}
+
 server() {
     # Remove unnecessary Packages.
     remove_package
