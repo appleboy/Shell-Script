@@ -90,7 +90,35 @@ install_nginx_spdy() {
     [ -d /tmp/nginx-1.4.0 ] || tar -zxvf /tmp/nginx-1.4.0.tar.gz -C /tmp
     [ -d /tmp/openssl-1.0.1e ] || tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
     # build makefile
-    cd /tmp/nginx-1.4.0 && ./configure --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --user=nginx --group=nginx --with-file-aio --with-ipv6 --with-http_realip_module --with-http_addition_module --with-http_xslt_module --with-http_image_filter_module --with-http_geoip_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gzip_static_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_stub_status_module --with-http_perl_module --with-mail --with-mail_ssl_module --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic' --with-ld-opt=-Wl,-E --with-http_ssl_module --with-http_spdy_module --with-openssl=/tmp/openssl-1.0.1e
+    cd /tmp/nginx-1.4.0 && ./configure \
+        --prefix=/usr/share/nginx \
+        --sbin-path=/usr/sbin/nginx \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --pid-path=/var/run/nginx.pid \
+        --user=nginx \
+        --group=nginx \
+        --with-http_realip_module \
+        --with-http_addition_module \
+        --with-http_xslt_module \
+        --with-http_image_filter_module \
+        --with-http_geoip_module \
+        --with-http_sub_module \
+        --with-http_dav_module \
+        --with-http_flv_module \
+        --with-http_mp4_module \
+        --with-http_gzip_static_module \
+        --with-http_random_index_module \
+        --with-http_secure_link_module \
+        --with-http_degradation_module \
+        --with-http_stub_status_module \
+        --with-http_perl_module \
+        --with-mail \
+        --with-mail_ssl_module \
+        --with-http_ssl_module \
+        --with-http_spdy_module \
+        --with-openssl=/tmp/openssl-1.0.1e
     cd /tmp/nginx-1.4.0 && make && make install
 }
 
