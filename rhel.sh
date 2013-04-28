@@ -89,7 +89,7 @@ install_nginx_spdy() {
     [ -d /tmp/openssl-1.0.1e ] && rm -rf /tmp/openssl-1.0.1e
     [ -d /tmp/nginx-1.4.0 ] || tar -zxvf /tmp/nginx-1.4.0.tar.gz -C /tmp
     [ -d /tmp/openssl-1.0.1e ] || tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
-    # build makefile
+    # generate makefile
     cd /tmp/nginx-1.4.0 && ./configure \
         --prefix=/usr/share/nginx \
         --sbin-path=/usr/sbin/nginx \
