@@ -72,6 +72,8 @@ install_percona_repository () {
 }
 
 install_nginx_spdy() {
+    # install dependence package.
+    aptitude -y install libpcre3-dev libgd-dev libgd2-xpm-dev libgeoip-dev
     # install nginx 1.4.x up version with spdy module
     [ -f /tmp/nginx-1.4.0.tar.gz ] || wget http://nginx.org/download/nginx-1.4.0.tar.gz -O /tmp/nginx-1.4.0.tar.gz
     # download openssl library
