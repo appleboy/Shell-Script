@@ -71,6 +71,48 @@ install_percona_repository () {
     aptitude -y install percona-xtrabackup
 }
 
+install_nginx_spdy() {
+    # install nginx 1.4.x up version with spdy module
+    [ -f /tmp/nginx-1.4.0.tar.gz ] || wget http://nginx.org/download/nginx-1.4.0.tar.gz -O /tmp/nginx-1.4.0.tar.gz
+    # download openssl library
+    [ -f /tmp/openssl-1.0.1e.tar.gz ] || wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz -O /tmp/openssl-1.0.1e.tar.gz
+    [ -d /tmp/nginx-1.4.0 ] && cd /tmp/nginx-1.4.0 && make clean
+    [ -d /tmp/openssl-1.0.1e ] && rm -rf /tmp/openssl-1.0.1e
+    [ -d /tmp/nginx-1.4.0 ] || tar -zxvf /tmp/nginx-1.4.0.tar.gz -C /tmp
+    [ -d /tmp/openssl-1.0.1e ] || tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
+    # generate makefile
+    cd /tmp/nginx-1.4.0 && ./configure \
+        --prefix=/usr/share/nginx \
+        --sbin-path=/usr/sbin/nginx \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --pid-path=/var/run/nginx.pid \
+        --user=nginx \
+        --group=nginx \
+        --with-http_realip_module \
+        --with-http_addition_module \
+        --with-http_xslt_module \
+        --with-http_image_filter_module \
+        --with-http_geoip_module \
+        --with-http_sub_module \
+        --with-http_dav_module \
+        --with-http_flv_module \
+        --with-http_mp4_module \
+        --with-http_gzip_static_module \
+        --with-http_random_index_module \
+        --with-http_secure_link_module \
+        --with-http_degradation_module \
+        --with-http_stub_status_module \
+        --with-http_perl_module \
+        --with-mail \
+        --with-mail_ssl_module \
+        --with-http_ssl_module \
+        --with-http_spdy_module \
+        --with-openssl=/tmp/openssl-1.0.1e
+    cd /tmp/nginx-1.4.0 && make && make install
+}
+
 server() {
     output "Install Server Packages."
     # install Ubuntu PPA
@@ -361,6 +403,9 @@ case $action in
         ;;
     "percona")
         install_percona_repository
+        ;;
+    "nginx")
+        install_nginx_spdy
         ;;
     "all")
         initial
