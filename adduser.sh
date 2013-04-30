@@ -11,7 +11,7 @@
 #   2011/03/14 first release
 #   2011/03/15 add default_group default_home default_shell for config
 #   2011/03/25 rewrite process command line
-#   2013/04/30 add default group which is not exist.
+#   2013/04/30 add default group which is not exist and change password format '!@#(user_name)!@#'
 #
 ################################################################################
 
@@ -28,22 +28,19 @@ default_shell="/bin/bash"
 # main function
 #
 
-function displayErr()
-{
+function displayErr() {
     echo
     echo $1;
     echo
     exit 1;
 }
 
-function usage()
-{
+function usage() {
     echo 'Usage: '$0' --action [add|del] Username'
     exit 1;
 }
 
-execute ()
-{
+execute () {
     $* >/dev/null
     if [ $? -ne 0 ]; then
         displayErr "ERROR: executing $*"
@@ -72,7 +69,7 @@ group_exist=$(awk -F ":" '{printf $1 "\n"}' /etc/group | grep "^${default_group}
 test -z ${group_exist} && groupadd ${default_group}
 
 case $action in
-    "add")
+    add)
         # check username exist
         username_exist=$(awk -F ":" '{printf $1 "\n"}' /etc/passwd | grep "^${username}$")
 
@@ -86,10 +83,9 @@ case $action in
 
         # add samba user
         [ $samba_enable -ne "0" ] && ((echo $username; echo $username) | smbpasswd -L -s -a $username > /dev/null && smbpasswd -L -s -e $username > /dev/null && echo "add samba user ${username}")
-        [ -z $cmd ] && echo "add username $username successfully";
-
+        [ -z $cmd ] && echo "add username $username successfully"
         ;;
-    "del")
+    del)
         [ $samba_enable -ne "0" ] && (smbpasswd -x $username > /dev/null && echo "delete samba user ${username}")
         userdel -r $username && echo "delete user ${username} and remove home directory"
         ;;
