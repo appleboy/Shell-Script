@@ -11,7 +11,7 @@
 #   2011/03/14 first release
 #   2011/03/15 add default_group default_home default_shell for config
 #   2011/03/25 rewrite process command line
-#   2013/04/30 add default group which is not exist and change password format '!@#(user_name)!@#'
+#   2013/04/30 add default group which is not exist and change password format '!${username}!'
 #
 ################################################################################
 
