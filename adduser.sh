@@ -77,9 +77,16 @@ case $action in
             displayErr "Username $username exist, please change it"
         fi
 
-        # generate password and add user
-        password=$(echo "!@#${username}!@#" | mkpasswd -s)
-        cmd=$(useradd -c "$username" -g $default_group -d "${default_home}/$username" --password $password -m -s $default_shell $username)
+        # add user
+        cmd=$(useradd -c "$username" -g $default_group -d "${default_home}/$username" -m -s $default_shell $username)
+
+        # set user password for Ubuntu
+        # password=$(echo "!${username}!" | mkpasswd -s)
+        # set user password for CentOS (ref: http://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script)
+        # $(echo "!${username}!" | passwd "${username}" --stdin)
+
+        # set user password
+        $(echo "${username}:!${username}!" | chpasswd)
 
         # add samba user
         [ $samba_enable -ne "0" ] && ((echo $username; echo $username) | smbpasswd -L -s -a $username > /dev/null && smbpasswd -L -s -e $username > /dev/null && echo "add samba user ${username}")
