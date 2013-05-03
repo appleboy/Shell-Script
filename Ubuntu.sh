@@ -215,6 +215,9 @@ server() {
     # install sshfs command
     aptitude -y install sshfs
 
+    # install SysBench command tool
+    aptitude -y install sysbench
+
     # remove nfs and rpcbind
     aptitude -y --purge remove nfs-common
     aptitude -y --purge remove rpcbind

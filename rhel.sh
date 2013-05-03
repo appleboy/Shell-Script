@@ -165,6 +165,9 @@ server() {
     # install memcached
     yum -y install memcached
 
+    # install SysBench command tool
+    yum -y install sysbench
+
     # install rubygems command
     yum -y install rubygems
 
