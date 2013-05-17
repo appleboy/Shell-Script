@@ -11,7 +11,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -69,6 +69,18 @@ install_percona_repository () {
     fi
     aptitude -y update
     aptitude -y install percona-xtrabackup
+}
+
+install_nginx() {
+    distribution=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
+    version_name=`lsb_release -cs`
+    wget http://nginx.org/keys/nginx_signing.key -O /tmp/nginx_signing.key
+    sudo apt-key add /tmp/nginx_signing.key
+    output "Add Nginx Repository to /etc/apt/sources.list"
+    echo "deb http://nginx.org/packages/mainline/${distribution}/ ${version_name} nginx" >> /etc/apt/sources.list
+    echo "deb-src http://nginx.org/packages/mainline/${distribution}/ ${version_name} nginx" >> /etc/apt/sources.list
+    aptitude -y update
+    aptitude -y install nginx
 }
 
 install_nginx_spdy() {
@@ -409,8 +421,11 @@ case $action in
     "percona")
         install_percona_repository
         ;;
-    "nginx")
+    "nginx-spdy")
         install_nginx_spdy
+        ;;
+    "nginx")
+        install_nginx
         ;;
     "all")
         initial
