@@ -60,7 +60,7 @@ install_mariadb() {
 install_percona_repository () {
     output "Install Percona Repository."
     gpg -a --export CD2EFD2A | sudo apt-key add -
-    version_name=`lsb_release -c | awk -F " " '{printf $2}' | tr A-Z a-z`
+    version_name=`lsb_release -cs`
     grep -ir "percona" /etc/apt/sources.list* > /dev/null
     if [ $? == "1" ]; then
         output "Add Percona Repository to /etc/apt/sources.list"
@@ -118,7 +118,7 @@ install_nginx_spdy() {
 server() {
     output "Install Server Packages."
     # install Ubuntu PPA
-    add-apt-repository -y ppa:nginx/stable
+    add-apt-repository ppa:nginx/stable -y
 
     aptitude -y install openssh-server sudo
     aptitude -y install build-essential
