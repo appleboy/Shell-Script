@@ -127,8 +127,6 @@ install_nginx_spdy() {
 
 server() {
     output "Install Server Packages."
-    # install Ubuntu PPA
-    add-apt-repository ppa:nginx/stable -y
 
     aptitude -y install openssh-server sudo
     aptitude -y install build-essential
@@ -174,7 +172,7 @@ server() {
     aptitude -y install php5 php5-cli php5-fpm php5-mysql php5-curl php5-geoip php5-gd php5-intl php5-mcrypt php5-memcache php-apc php-pear php5-imap php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi spawn-fcgi openssl geoip-database memcached
 
     # install nginx web server
-    aptitude -y install nginx
+    install_nginx
 
     # man program
     aptitude -y install most
