@@ -10,6 +10,10 @@
 #
 ################################################################################
 
+# get sever os name: ubuntu or debian
+server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
+version_name=`lsb_release -cs`
+
 usage() {
     echo 'Usage: '$0' [--help|-h] [-i|--install] [nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
@@ -38,9 +42,6 @@ initial() {
 
 install_mariadb() {
     output "Install Mariadb Server."
-    # get sever os name: ubuntu or debian
-    server_name=`lsb_release -i | awk -F " " '{printf $3}' | tr A-Z a-z`
-    version_name=`lsb_release -c | awk -F " " '{printf $2}' | tr A-Z a-z`
     # Ubuntu 12.10 don't support python-software-properties
     # http://blog.xrmplatform.org/solution-for-add-apt-repository-command-not-found-ubuntu-12-10-server/
     aptitude -y install software-properties-common
@@ -60,7 +61,6 @@ install_mariadb() {
 install_percona_repository () {
     output "Install Percona Repository."
     gpg -a --export CD2EFD2A | sudo apt-key add -
-    version_name=`lsb_release -cs`
     grep -ir "percona" /etc/apt/sources.list* > /dev/null
     if [ $? == "1" ]; then
         output "Add Percona Repository to /etc/apt/sources.list"
@@ -72,13 +72,11 @@ install_percona_repository () {
 }
 
 install_nginx() {
-    distribution=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
-    version_name=`lsb_release -cs`
     wget http://nginx.org/keys/nginx_signing.key -O /tmp/nginx_signing.key
     sudo apt-key add /tmp/nginx_signing.key
     output "Add Nginx Repository to /etc/apt/sources.list"
-    echo "deb http://nginx.org/packages/mainline/${distribution}/ ${version_name} nginx" >> /etc/apt/sources.list
-    echo "deb-src http://nginx.org/packages/mainline/${distribution}/ ${version_name} nginx" >> /etc/apt/sources.list
+    echo "deb http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+    echo "deb-src http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
     aptitude -y update
     aptitude -y install nginx
 }
