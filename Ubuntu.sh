@@ -168,7 +168,7 @@ server() {
     # apache mpm worker and php-fpm service
     aptitude -y install apache2-mpm-worker libapache2-mod-geoip libapache2-mod-rpaf libapache2-mod-fastcgi
     # install stable php 5.4
-    add-apt-repository -y ppa:ondrej/php5
+    [ "$server_name" == "ubuntu" ] && add-apt-repository ppa:ondrej/php5 -y
     aptitude -y install php5 php5-cli php5-fpm php5-mysql php5-curl php5-geoip php5-gd php5-intl php5-mcrypt php5-memcache php-apc php-pear php5-imap php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi spawn-fcgi openssl geoip-database memcached
 
     # install nginx web server
