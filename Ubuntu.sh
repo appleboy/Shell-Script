@@ -60,7 +60,7 @@ install_mariadb() {
 
 install_percona_repository () {
     output "Install Percona Repository."
-    gpg -a --export CD2EFD2A | sudo apt-key add -
+    apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
     grep -ir "percona" /etc/apt/sources.list* > /dev/null
     if [ $? == "1" ]; then
         output "Add Percona Repository to /etc/apt/sources.list"
