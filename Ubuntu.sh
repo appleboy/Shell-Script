@@ -74,9 +74,12 @@ install_percona_repository () {
 install_nginx() {
     wget http://nginx.org/keys/nginx_signing.key -O /tmp/nginx_signing.key
     sudo apt-key add /tmp/nginx_signing.key
-    output "Add Nginx Repository to /etc/apt/sources.list"
-    echo "deb http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
-    echo "deb-src http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+    grep -ir "nginx.org" /etc/apt/sources.list* > /dev/null
+    if [ $? == "1" ]; then
+        output "Add Nginx Repository to /etc/apt/sources.list"
+        echo "deb http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+        echo "deb-src http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+    fi
     aptitude -y update
     aptitude -y install nginx
 }
