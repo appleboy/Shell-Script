@@ -201,6 +201,7 @@ server() {
     # install python easy_install
     aptitude -y install python-pip
     # install fabric command
+    aptitude -y install python-dev
     pip install fabric
 
     # install terminal multiplexer (http://tmux.sourceforge.net/)
