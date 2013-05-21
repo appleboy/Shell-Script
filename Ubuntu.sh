@@ -77,8 +77,8 @@ install_nginx() {
     grep -ir "nginx.org" /etc/apt/sources.list* > /dev/null
     if [ $? == "1" ]; then
         output "Add Nginx Repository to /etc/apt/sources.list"
-        echo "deb http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
-        echo "deb-src http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+        echo "deb http://nginx.org/packages/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+        echo "deb-src http://nginx.org/packages/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
     fi
     aptitude -y update
     aptitude -y install nginx
@@ -243,6 +243,7 @@ server() {
 
     # install nvm
     # https://github.com/creationix/nvm
+    aptitude -y install curl
     curl https://raw.github.com/appleboy/nvm/develop/install.sh | sh
     . ~/.nvm/nvm.sh
     nvm install stable
