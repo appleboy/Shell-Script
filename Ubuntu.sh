@@ -49,7 +49,11 @@ install_mariadb() {
     apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
     # repository url ref: https://downloads.mariadb.org/mariadb/repositories/
     if [ "$server_name" == "debian" ] ; then
-        echo "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main" >> /etc/apt/sources.list
+        grep -ir "mariadb" /etc/apt/sources.list* > /dev/null
+        if [ $? == "1" ]; then
+            output "Add Mariadb Repository to /etc/apt/sources.list"
+            echo "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main" >> /etc/apt/sources.list
+        fi
     else
         add-apt-repository "deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/5.5/${server_name} ${version_name} main"
     fi
