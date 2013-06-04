@@ -269,6 +269,8 @@ server() {
     npm install -g uglify-js@1
     # install twitter bower package
     npm install -g bower
+    # install grunt task package
+    npm install -g grunt-cli
 
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
