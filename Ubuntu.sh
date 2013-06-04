@@ -303,6 +303,9 @@ server() {
     aptitude -y install python-mysqldb
     # Install django-html in an HTML minifier
     pip install django-htmlmin
+
+    # remove MTA service
+    aptitude -y remove exim4
 }
 
 desktop() {
