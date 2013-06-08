@@ -245,6 +245,9 @@ server() {
     # install ftp daemon
     aptitude -y install proftpd
 
+    # install Gearman Daemon
+    aptitude -y install gearman-job-server libgearman-dev
+
     # install nvm
     # https://github.com/creationix/nvm
     aptitude -y install curl
