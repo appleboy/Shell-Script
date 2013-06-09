@@ -132,6 +132,12 @@ install_nginx_spdy() {
     cd /tmp/nginx-1.4.1 && make && make install
 }
 
+install_gearmand() {
+    aptitude -y install libboost-program-options-dev gperf libcloog-ppl0 libpq-dev libmemcached-dev libevent-dev
+    cd /tmp && wget https://launchpad.net/libdrizzle/5.1/5.1.4/+download/libdrizzle-5.1.4.tar.gz && tar xvfz libdrizzle-5.1.4.tar.gz && cd libdrizzle-5.1.4 && ./configure --prefix=/usr && make && make install
+    cd /tmp && wget https://launchpad.net/gearmand/1.2/1.1.8/+download/gearmand-1.1.8.tar.gz && tar xvfz gearmand-1.1.8.tar.gz && cd gearmand-1.1.8 && ./configure --prefix=/usr && make && make install
+}
+
 server() {
     output "Install Server Packages."
 
@@ -175,7 +181,8 @@ server() {
     aptitude -y install apache2-mpm-worker libapache2-mod-geoip libapache2-mod-rpaf libapache2-mod-fastcgi
     # install stable php 5.4
     [ "$server_name" == "ubuntu" ] && add-apt-repository ppa:ondrej/php5 -y
-    aptitude -y install php5 php5-cli php5-fpm php5-mysql php5-curl php5-geoip php5-gd php5-intl php5-mcrypt php5-memcache php-apc php-pear php5-imap php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi spawn-fcgi openssl geoip-database memcached
+    aptitude -y install php5 php5-cli php5-fpm php5-mysql php5-curl php5-geoip php5-gd php5-intl php5-mcrypt php5-memcache php-apc php5-imap php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi spawn-fcgi openssl geoip-database memcached
+    aptitude install php5-dev php-pear
 
     # install nginx web server
     install_nginx
@@ -247,6 +254,7 @@ server() {
 
     # install Gearman Daemon
     aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
+    pecl install channel://pecl.php.net/gearman-1.1.0
 
     # install nvm
     # https://github.com/creationix/nvm
