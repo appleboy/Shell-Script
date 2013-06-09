@@ -169,7 +169,7 @@ server() {
     yum -y install sysbench
 
     # install Gearman daemon
-    yum -y install libgearman-devel libgearman gearmand libgearman-devel
+    yum -y install libgearman gearmand libgearman-devel libdrizzle
 
     # install rubygems command
     yum -y install rubygems

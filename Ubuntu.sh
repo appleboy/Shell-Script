@@ -246,7 +246,7 @@ server() {
     aptitude -y install proftpd
 
     # install Gearman Daemon
-    aptitude -y install gearman-job-server libgearman-dev
+    aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
 
     # install nvm
     # https://github.com/creationix/nvm
