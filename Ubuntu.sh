@@ -321,6 +321,9 @@ server() {
     # Install django-html in an HTML minifier
     pip install django-htmlmin
 
+    # Converts XML to Python objects (https://github.com/stchris/untangle)
+    pip install untangle
+
     # remove MTA service
     aptitude -y remove exim4
 
