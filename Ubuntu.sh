@@ -323,6 +323,9 @@ server() {
 
     # remove MTA service
     aptitude -y remove exim4
+
+    # wbench. It benchmarks websites, YO!
+    gem install wbench
 }
 
 desktop() {
