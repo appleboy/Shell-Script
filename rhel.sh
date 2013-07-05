@@ -75,7 +75,7 @@ install_percona_repository () {
 }
 
 install_php() {
-    yum -y install php php-fpm php-xcache php-mysql php-pdo php-gd php-pecl-memcached php-devel
+    yum -y install php php-fpm php-xcache php-pecl-xdebug php-mysql php-pdo php-gd php-pecl-memcached php-devel
     # Zend OPCache
     pecl install channel://pecl.php.net/ZendOpcache-7.0.2
 }
