@@ -85,8 +85,9 @@ case $action in
         # set user password for CentOS (ref: http://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script)
         # $(echo "!${username}!" | passwd "${username}" --stdin)
 
-        # set user password
+        # get default password
         test -z ${password} && password="!${username}!"
+        # set user password
         $(echo "${username}:${password}" | chpasswd)
 
         # add samba user
