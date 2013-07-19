@@ -36,7 +36,7 @@ function displayErr() {
 }
 
 function usage() {
-    echo 'Usage: '$0' --action [add|del] Username'
+    echo 'Usage: '$0' --action [add|del] Username [Password]'
     exit 1;
 }
 
@@ -53,7 +53,7 @@ while [ $# -gt 0 ]; do
         --help | -h)
             usage $0
         ;;
-        --action) shift; action=$1; shift; username=$1; shift; ;;
+        --action) shift; action=$1; shift; username=$1; shift; password=$1; shift; ;;
         *) usage $0; ;;
     esac
 done
@@ -86,7 +86,8 @@ case $action in
         # $(echo "!${username}!" | passwd "${username}" --stdin)
 
         # set user password
-        $(echo "${username}:!${username}!" | chpasswd)
+        test -z ${password} && password="!${username}!"
+        $(echo "${username}:${password}" | chpasswd)
 
         # add samba user
         [ $samba_enable -ne "0" ] && ((echo $username; echo $username) | smbpasswd -L -s -a $username > /dev/null && smbpasswd -L -s -e $username > /dev/null && echo "add samba user ${username}")
