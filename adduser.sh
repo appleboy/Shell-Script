@@ -12,6 +12,7 @@
 #   2011/03/15 add default_group default_home default_shell for config
 #   2011/03/25 rewrite process command line
 #   2013/04/30 add default group which is not exist and change password format '!${username}!'
+#   2013/07/19 support set password command
 #
 ################################################################################
 
@@ -36,7 +37,7 @@ function displayErr() {
 }
 
 function usage() {
-    echo 'Usage: '$0' --action [add|del] Username [Password]'
+    echo 'Usage: '$0' [-h|[--action|-a]] [add|del] Username [Password]'
     exit 1;
 }
 
@@ -53,7 +54,7 @@ while [ $# -gt 0 ]; do
         --help | -h)
             usage $0
         ;;
-        --action) shift; action=$1; shift; username=$1; shift; password=$1; shift; ;;
+        --action | -a) shift; action=$1; shift; username=$1; shift; password=$1; shift; ;;
         *) usage $0; ;;
     esac
 done
