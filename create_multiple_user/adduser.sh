@@ -6,6 +6,7 @@
 #
 # Program:
 #   Add multiple user account via config file.
+#   Please copy ../adduser.sh /usr/sbin folder
 #
 # History:
 #   2013/07/19 first release
