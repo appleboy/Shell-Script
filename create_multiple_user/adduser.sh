@@ -49,19 +49,34 @@ while [ $# -gt 0 ]; do
         -h)
             usage $0
         ;;
-        --action | -a) shift; action=$1; shift; username=$1; shift; password=$1; shift; ;;
-        *) usage $0; ;;
+        -a)
+            shift; create=1;
+        ;;
+        -d)
+            shift; delete=1;
+        ;;
+        *)
+            config_path=$1; shift;
+        ;;
     esac
 done
 
-cat config.txt | while read USER PASSWORD
-do
-    echo "Create user: ${USER}"
-    create_user --action add ${USER} ${PASSWORD}
-done
+test -z $create && test -z $delete && usage $0
+# check defin file path.
+test -z $config_path && usage $0
+# check file exist.
+test -f $config_path || usage $0
 
-cat config.txt | while read USER PASSWORD
-do
-    echo "Delete user: ${USER}"
-    create_user --action del ${USER} ${PASSWORD}
-done
+if [ ! -z ${create} ] && [ ${create} == "1" ]; then
+    cat $config_path | while read USER PASSWORD
+    do
+        create_user --action add ${USER} ${PASSWORD}
+    done
+fi
+
+if [ ! -z ${delete} ] && [ ${delete} == "1" ]; then
+    cat $config_path | while read USER PASSWORD
+    do
+        create_user --action del ${USER}
+    done
+fi
