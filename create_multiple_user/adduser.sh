@@ -5,8 +5,11 @@
 # Web:      http://blog.wu-boy.com
 #
 # Program:
-#   Add multiple user account via config file.
 #   Please copy ../adduser.sh /usr/sbin folder
+#   Add multiple user account via config file.
+#   config file format:
+#       username_1 password_1
+#       username_2 password_2
 #
 # History:
 #   2013/07/19 first release
