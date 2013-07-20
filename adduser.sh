@@ -17,6 +17,7 @@
 ################################################################################
 
 VERSION="0.1"
+ROOT_UID=0
 #
 # config
 #
@@ -47,6 +48,10 @@ execute () {
         displayErr "ERROR: executing $*"
     fi
 }
+
+if [ "$UID" -ne "$ROOT_UID" ]; then
+    displayErr "Must be root to run this script."
+fi
 
 # Process command line...
 while [ $# -gt 0 ]; do
