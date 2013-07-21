@@ -402,6 +402,10 @@ desktop() {
 
     # install sublime-text editor
     aptitude -y install sublime-text
+
+    # Shutter is a feature-rich screenshot program.
+    # ref: http://shutter-project.org/
+    aptitude -y install shutter
 }
 
 clean-kernel() {
