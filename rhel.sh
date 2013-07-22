@@ -173,6 +173,9 @@ server() {
     # install Gearman daemon
     yum -y install libgearman gearmand libgearman-devel libdrizzle
 
+    # Remote terminal application. ref: http://mosh.mit.edu
+    yum -y install mosh
+
     # install rubygems command
     yum -y install rubygems
 
