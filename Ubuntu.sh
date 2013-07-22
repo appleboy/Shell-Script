@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [mosh|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -60,6 +60,17 @@ install_mariadb() {
     aptitude -y update
     # install mariadb-galera-server and galera library
     aptitude -y install mariadb-galera-server-5.5 galera
+}
+
+install_mosh() {
+    if [ "$server_name" == "debian" ] ; then
+        aptitude -y install mosh
+    else
+        aptitude -y install python-software-properties
+        add-apt-repository -y ppa:keithw/mosh
+        aptitude -y update
+        aptitude -y install mosh
+    fi
 }
 
 install_percona_repository () {
@@ -192,6 +203,9 @@ server() {
 
     # install nginx web server
     install_nginx
+
+    # Remote terminal application. ref: http://mosh.mit.edu
+    install_mosh
 
     # man program
     aptitude -y install most
@@ -461,6 +475,9 @@ case $action in
         ;;
     "nginx")
         install_nginx
+        ;;
+    "mosh")
+        install_mosh
         ;;
     "all")
         initial
