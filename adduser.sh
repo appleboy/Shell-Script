@@ -12,10 +12,12 @@
 #   2011/03/15 add default_group default_home default_shell for config
 #   2011/03/25 rewrite process command line
 #   2013/04/30 add default group which is not exist and change password format '!${username}!'
+#   2013/07/19 support set password command
 #
 ################################################################################
 
 VERSION="0.1"
+ROOT_UID=0
 #
 # config
 #
@@ -36,7 +38,7 @@ function displayErr() {
 }
 
 function usage() {
-    echo 'Usage: '$0' --action [add|del] Username'
+    echo 'Usage: '$0' [-h|[--action|-a]] [add|del] Username [Password]'
     exit 1;
 }
 
@@ -47,13 +49,17 @@ execute () {
     fi
 }
 
+if [ "$UID" -ne "$ROOT_UID" ]; then
+    displayErr "Must be root to run this script."
+fi
+
 # Process command line...
 while [ $# -gt 0 ]; do
     case $1 in
         --help | -h)
             usage $0
         ;;
-        --action) shift; action=$1; shift; username=$1; shift; ;;
+        --action | -a) shift; action=$1; shift; username=$1; shift; password=$1; shift; ;;
         *) usage $0; ;;
     esac
 done
@@ -85,8 +91,10 @@ case $action in
         # set user password for CentOS (ref: http://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script)
         # $(echo "!${username}!" | passwd "${username}" --stdin)
 
+        # get default password
+        test -z ${password} && password="!${username}!"
         # set user password
-        $(echo "${username}:!${username}!" | chpasswd)
+        $(echo "${username}:${password}" | chpasswd)
 
         # add samba user
         [ $samba_enable -ne "0" ] && ((echo $username; echo $username) | smbpasswd -L -s -a $username > /dev/null && smbpasswd -L -s -e $username > /dev/null && echo "add samba user ${username}")
