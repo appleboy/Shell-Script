@@ -103,15 +103,15 @@ install_nginx_spdy() {
     # install dependence package.
     aptitude -y install libpcre3-dev libgd-dev libgd2-xpm-dev libgeoip-dev libxslt-dev
     # install nginx 1.4.x up version with spdy module
-    [ -f /tmp/nginx-1.4.1.tar.gz ] || wget http://nginx.org/download/nginx-1.4.1.tar.gz -O /tmp/nginx-1.4.1.tar.gz
+    [ -f /tmp/nginx-1.4.2.tar.gz ] || wget http://nginx.org/download/nginx-1.4.2.tar.gz -O /tmp/nginx-1.4.2.tar.gz
     # download openssl library
     [ -f /tmp/openssl-1.0.1e.tar.gz ] || wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz -O /tmp/openssl-1.0.1e.tar.gz
-    [ -d /tmp/nginx-1.4.1 ] && cd /tmp/nginx-1.4.1 && make clean
+    [ -d /tmp/nginx-1.4.2 ] && cd /tmp/nginx-1.4.2 && make clean
     [ -d /tmp/openssl-1.0.1e ] && rm -rf /tmp/openssl-1.0.1e
-    [ -d /tmp/nginx-1.4.1 ] || tar -zxvf /tmp/nginx-1.4.1.tar.gz -C /tmp
+    [ -d /tmp/nginx-1.4.2 ] || tar -zxvf /tmp/nginx-1.4.2.tar.gz -C /tmp
     [ -d /tmp/openssl-1.0.1e ] || tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
     # generate makefile
-    cd /tmp/nginx-1.4.1 && ./configure \
+    cd /tmp/nginx-1.4.2 && ./configure \
         --prefix=/usr/share/nginx \
         --sbin-path=/usr/sbin/nginx \
         --conf-path=/etc/nginx/nginx.conf \
@@ -140,7 +140,7 @@ install_nginx_spdy() {
         --with-http_ssl_module \
         --with-http_spdy_module \
         --with-openssl=/tmp/openssl-1.0.1e
-    cd /tmp/nginx-1.4.1 && make && make install
+    cd /tmp/nginx-1.4.2 && make && make install
 }
 
 install_gearmand() {
