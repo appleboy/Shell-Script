@@ -176,6 +176,9 @@ server() {
     # Remote terminal application. ref: http://mosh.mit.edu
     yum -y install mosh
 
+    # Redirect TCP connections
+    yum -y install redir
+
     # install rubygems command
     yum -y install rubygems
 
