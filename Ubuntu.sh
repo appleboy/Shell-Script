@@ -272,6 +272,9 @@ server() {
     # install ftp daemon
     aptitude -y install proftpd
 
+    # Redirect TCP connections
+    aptitude -y install redir
+
     # install Gearman Daemon
     aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
     pecl install channel://pecl.php.net/gearman-1.1.0
