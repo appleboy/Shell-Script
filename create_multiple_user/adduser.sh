@@ -5,7 +5,8 @@
 # Web:      http://blog.wu-boy.com
 #
 # Program:
-#   Please copy ../adduser.sh /usr/sbin folder
+#   Please copy ../adduser.sh to /usr/sbin folder
+#   command: cp ../adduser.sh /usr/sbin/create_user
 #   Add multiple user account via config file.
 #   config file format:
 #       username_1 password_1
@@ -45,6 +46,8 @@ execute () {
 if [ "$UID" -ne "$ROOT_UID" ]; then
     displayErr "Must be root to run this script."
 fi
+
+type create_user > /dev/null 2>&1 || displayErr "Please copy ../adduser.sh to /usr/sbin folder"
 
 # Process command line...
 while [ $# -gt 0 ]; do
