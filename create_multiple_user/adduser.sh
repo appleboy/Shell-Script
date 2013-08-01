@@ -33,6 +33,8 @@ function displayErr() {
 
 function usage() {
     echo 'Usage: '$0' [-h|-a|-d] config_file_path'
+    echo '    -a: add multiple user'
+    echo '    -d: remove multiple user'
     exit 1;
 }
 
