@@ -155,6 +155,11 @@ install_gearmand() {
     cd /tmp && tar xvfz gearmand-1.1.8.tar.gz && cd gearmand-1.1.8 && ./configure --prefix=/usr && make && make install
 }
 
+install_proftpd() {
+    # install ftp daemon
+    aptitude -y install proftpd
+}
+
 server() {
     output "Install Server Packages."
 
@@ -268,9 +273,6 @@ server() {
     # ref: http://yaohua.info/2012/05/19/ubuntu-extracting-rar-invalid-encoding/
     aptitude -y --purge remove rar
     aptitude -y install unrar
-
-    # install ftp daemon
-    aptitude -y install proftpd
 
     # Redirect TCP connections
     aptitude -y install redir
