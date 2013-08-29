@@ -1,5 +1,10 @@
 ## Initial Setup for Ubuntu
 
+Using ```wget``` command
+```
+$ wget -qO- https://raw.github.com/appleboy/Shell-Script/master/init.sh | sh
+```
+Using ```curl``` command
 ```
 $ curl https://raw.github.com/appleboy/Shell-Script/master/init.sh | sh
 ```
