@@ -279,7 +279,7 @@ server() {
 
     # install Gearman Daemon
     aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
-    pecl install channel://pecl.php.net/gearman-1.1.0
+    pecl install channel://pecl.php.net/gearman-1.1.2
 
     # support Zend OPcache on PHP 5.2, 5.3 and 5.4
     pecl install channel://pecl.php.net/ZendOpcache-7.0.2
