@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [mosh|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -149,10 +149,10 @@ install_gearmand() {
     aptitude -y install libmariadbclient-dev
     [ -f /tmp/libdrizzle-5.1.4.tar.gz ] || wget https://launchpad.net/libdrizzle/5.1/5.1.4/+download/libdrizzle-5.1.4.tar.gz -O /tmp/libdrizzle-5.1.4.tar.gz
     [ -d /tmp/libdrizzle-5.1.4 ] && rm -rf /tmp/libdrizzle-5.1.4
-    [ -f /tmp/gearmand-1.1.8.tar.gz ] || wget https://launchpad.net/gearmand/1.2/1.1.8/+download/gearmand-1.1.8.tar.gz -O /tmp/gearmand-1.1.8.tar.gz
-    [ -d /tmp/gearmand-1.1.8 ] && rm -rf /tmp/gearmand-1.1.8
+    [ -f /tmp/gearmand-1.1.9.tar.gz ] || wget https://launchpad.net/gearmand/1.2/1.1.9/+download/gearmand-1.1.9.tar.gz -O /tmp/gearmand-1.1.9.tar.gz
+    [ -d /tmp/gearmand-1.1.9 ] && rm -rf /tmp/gearmand-1.1.9
     cd /tmp && tar xvfz libdrizzle-5.1.4.tar.gz && cd libdrizzle-5.1.4 && ./configure --prefix=/usr && make && make install
-    cd /tmp && tar xvfz gearmand-1.1.8.tar.gz && cd gearmand-1.1.8 && ./configure --prefix=/usr && make && make install
+    cd /tmp && tar xvfz gearmand-1.1.9.tar.gz && cd gearmand-1.1.9 && ./configure --prefix=/usr && make && make install
 }
 
 install_proftpd() {
@@ -487,6 +487,9 @@ case $action in
         ;;
     "mosh")
         install_mosh
+        ;;
+    "gearman")
+        install_gearmand
         ;;
     "all")
         initial
