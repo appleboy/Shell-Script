@@ -346,6 +346,9 @@ server() {
     # Converts XML to Python objects (https://github.com/stchris/untangle)
     pip install untangle
 
+    # http://pythonhosted.org/gearman/index.html
+    pip install gearman
+
     # remove MTA service
     aptitude -y remove exim4
 
