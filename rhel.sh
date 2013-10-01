@@ -172,6 +172,8 @@ server() {
 
     # install Gearman daemon
     yum -y install libgearman gearmand libgearman-devel libdrizzle
+    # install php extension
+    pecl install channel://pecl.php.net/gearman-1.1.2
 
     # Remote terminal application. ref: http://mosh.mit.edu
     yum -y install mosh
