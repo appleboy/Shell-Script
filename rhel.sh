@@ -193,6 +193,7 @@ server() {
     chkconfig nginx on
     chkconfig haproxy on
     chkconfig php-fpm on
+    chkconfig gearmand on
 }
 
 # Process command line...
