@@ -162,7 +162,10 @@ server() {
 
     # install python pip tool and fabric command
     yum -y install python-pip
-    pip-python install fabric
+    pip install fabric
+
+    # https://github.com/seb-m/pyinotify
+    pip install pyinotify
 
     # install memcached
     yum -y install memcached

@@ -349,6 +349,9 @@ server() {
     # http://pythonhosted.org/gearman/index.html
     pip install gearman
 
+    # https://github.com/seb-m/pyinotify
+    pip install pyinotify
+
     # remove MTA service
     aptitude -y remove exim4
 
