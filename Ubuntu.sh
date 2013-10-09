@@ -146,7 +146,7 @@ install_nginx_spdy() {
 install_gearmand() {
     aptitude -y install libboost-program-options-dev gperf libcloog-ppl0 libpq-dev libmemcached-dev libevent-dev
     # install mariadb header file
-    aptitude -y install libmariadbclient-dev
+    aptitude -y install libmariadbclient-dev uuid-dev
     [ -f /tmp/libdrizzle-5.1.4.tar.gz ] || wget https://launchpad.net/libdrizzle/5.1/5.1.4/+download/libdrizzle-5.1.4.tar.gz -O /tmp/libdrizzle-5.1.4.tar.gz
     [ -d /tmp/libdrizzle-5.1.4 ] && rm -rf /tmp/libdrizzle-5.1.4
     [ -f /tmp/gearmand-1.1.11.tar.gz ] || wget https://launchpad.net/gearmand/1.2/1.1.11/+download/gearmand-1.1.11.tar.gz -O /tmp/gearmand-1.1.11.tar.gz
