@@ -151,8 +151,8 @@ install_gearmand() {
     [ -d /tmp/libdrizzle-5.1.4 ] && rm -rf /tmp/libdrizzle-5.1.4
     [ -f /tmp/gearmand-1.1.11.tar.gz ] || wget https://launchpad.net/gearmand/1.2/1.1.11/+download/gearmand-1.1.11.tar.gz -O /tmp/gearmand-1.1.11.tar.gz
     [ -d /tmp/gearmand-1.1.11 ] && rm -rf /tmp/gearmand-1.1.11
-    cd /tmp && tar xvfz libdrizzle-5.1.4.tar.gz && cd libdrizzle-5.1.4 && ./configure --prefix=/usr && make && make install
-    cd /tmp && tar xvfz gearmand-1.1.11.tar.gz && cd gearmand-1.1.11 && ./configure --prefix=/usr && make && make install
+    cd /tmp && tar xvfz libdrizzle-5.1.4.tar.gz && cd libdrizzle-5.1.4 && ./configure && make && make install
+    cd /tmp && tar xvfz gearmand-1.1.11.tar.gz && cd gearmand-1.1.11 && ./configure && make && make install
 }
 
 install_proftpd() {
