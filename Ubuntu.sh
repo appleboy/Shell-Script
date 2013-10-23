@@ -277,6 +277,9 @@ server() {
     # Redirect TCP connections
     aptitude -y install redir
 
+    # install Munin Monitor
+    aptitude -y install munin-node munin
+
     # install Gearman Daemon
     aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
     pecl install channel://pecl.php.net/gearman-1.1.2
