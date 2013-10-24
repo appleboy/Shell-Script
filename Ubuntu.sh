@@ -60,6 +60,7 @@ install_mariadb() {
     aptitude -y update
     # install mariadb-galera-server and galera library
     aptitude -y install mariadb-galera-server-5.5 galera
+    aptitide -y libmariadbd-dev libmariadbclient-dev
 }
 
 install_mosh() {
