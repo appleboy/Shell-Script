@@ -40,6 +40,16 @@ initial() {
     apt-get -y install aptitude
 }
 
+install_jenkins() {
+    # ref https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
+    output "Install Jenkins Server."
+    aptitude -y install openjdk-7-jre openjdk-7-jdk
+    wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+    sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+    aptitude -y update
+    aptitude -y install jenkins
+}
+
 install_mariadb() {
     output "Install Mariadb Server."
     # Ubuntu 12.10 don't support python-software-properties
@@ -60,7 +70,6 @@ install_mariadb() {
     aptitude -y update
     # install mariadb-galera-server and galera library
     aptitude -y install mariadb-galera-server-5.5 galera
-    aptitide -y libmariadbd-dev libmariadbclient-dev
 }
 
 install_mosh() {
@@ -501,6 +510,8 @@ case $action in
     "gearman")
         install_gearmand
         ;;
+    "jenkins")
+        install_jenkins
     "all")
         initial
         server
