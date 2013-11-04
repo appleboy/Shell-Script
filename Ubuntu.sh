@@ -512,6 +512,7 @@ case $action in
         ;;
     "jenkins")
         install_jenkins
+        ;;
     "all")
         initial
         server
