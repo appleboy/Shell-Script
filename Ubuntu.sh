@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -170,6 +170,13 @@ install_proftpd() {
     aptitude -y install proftpd
 }
 
+install_timezone() {
+    # update time zone
+    cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+    aptitude -y install ntpdate
+    ntpdate time.stdtime.gov.tw
+}
+
 server() {
     output "Install Server Packages."
 
@@ -289,6 +296,11 @@ server() {
 
     # install Munin Monitor
     aptitude -y install munin-node munin
+    
+    # update time zone
+    cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+    aptitude -y install ntpdate
+    ntpdate time.stdtime.gov.tw
 
     # install Gearman Daemon
     aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
@@ -512,6 +524,9 @@ case $action in
         ;;
     "jenkins")
         install_jenkins
+        ;;
+    "timezone")
+        install_timezone
         ;;
     "all")
         initial
