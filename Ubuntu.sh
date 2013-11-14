@@ -175,6 +175,8 @@ install_timezone() {
     cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
     aptitude -y install ntpdate
     ntpdate time.stdtime.gov.tw
+    # write time to clock.
+    hwclock -w
 }
 
 server() {
@@ -301,6 +303,8 @@ server() {
     cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
     aptitude -y install ntpdate
     ntpdate time.stdtime.gov.tw
+    # write time to clock.
+    hwclock -w
 
     # install Gearman Daemon
     aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
