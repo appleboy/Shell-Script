@@ -275,6 +275,10 @@ server() {
     # install capistrano tool
     gem install capistrano
 
+    # Optimize images using multiple utilities
+    # ref: https://github.com/toy/image_optim
+    gem install image_optim
+
     # install PPA purge command
     aptitude -y install ppa-purge
 
@@ -298,7 +302,7 @@ server() {
 
     # install Munin Monitor
     aptitude -y install munin-node munin
-    
+
     # update time zone
     cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
     aptitude -y install ntpdate
