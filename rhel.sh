@@ -194,6 +194,10 @@ server() {
     # install capistrano tool
     gem install capistrano
 
+    # Optimize images using multiple utilities
+    # ref: https://github.com/toy/image_optim
+    gem install image_optim
+
     # start daemon
     chkconfig nginx on
     chkconfig haproxy on
