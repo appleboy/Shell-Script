@@ -124,6 +124,11 @@ install_nginx_spdy() {
     cd /tmp/nginx-1.4.3 && make && make install
 }
 
+install_s4cmd() {
+    cd ~ && git clone https://github.com/bloomreach/s4cmd.git
+    cp -r s4cmd/s4cmd.py /usr/bin/
+}
+
 server() {
     # Remove unnecessary Packages.
     remove_package
@@ -167,6 +172,11 @@ server() {
     # https://github.com/seb-m/pyinotify
     pip install pyinotify
 
+    # install Amazone Super S3 command line tool
+    # ref: https://github.com/bloomreach/s4cmd
+    pip install boto
+    install_s4cmd
+
     # install memcached
     yum -y install memcached
 
@@ -197,6 +207,13 @@ server() {
     # Optimize images using multiple utilities
     # ref: https://github.com/toy/image_optim
     gem install image_optim
+
+    # S3CP: Commands-line tools for Amazon S3 file manipulation
+    # ref: https://github.com/aboisvert/s3cp
+    gem install s3cp
+    # usage:
+    # export AWS_ACCESS_KEY_ID=xxxx
+    # export AWS_SECRET_ACCESS_KEY=xxx
 
     # start daemon
     chkconfig nginx on
