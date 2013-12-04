@@ -76,8 +76,8 @@ def _get_aggressive_cache_headers(key):
     # HTTP/1.1 (5 years)
     metadata['Cache-Control'] = 'max-age=%d, public' % (3600 * 24 * 360 * 5)
 
-    # add gzip encoding
-    metadata['Content-Encoding'] = 'gzip'
+    # add gzip encoding, it brings some error on css or js file by appleboy
+    # metadata['Content-Encoding'] = 'gzip'
 
     return metadata
 
