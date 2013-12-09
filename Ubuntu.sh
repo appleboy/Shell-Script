@@ -313,7 +313,10 @@ server() {
     aptitude -y install redir
 
     # Htop is an ncursed-based process viewer similar to top
-    aptitude -y install htop
+    aptitude -y install htop atop
+
+    # Atop is an ASCII full-screen performance monitor
+    aptitude -y install atop
 
     # install Munin Monitor
     aptitude -y install munin-node munin
