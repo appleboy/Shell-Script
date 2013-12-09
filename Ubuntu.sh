@@ -312,6 +312,9 @@ server() {
     # Redirect TCP connections
     aptitude -y install redir
 
+    # Htop is an ncursed-based process viewer similar to top
+    aptitude -y install htop
+
     # install Munin Monitor
     aptitude -y install munin-node munin
 
