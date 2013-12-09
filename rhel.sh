@@ -197,6 +197,9 @@ server() {
     # install rubygems command
     yum -y install rubygems
 
+    # install process viewer command
+    yum -y htop atop
+
     # update rubygems
     gem install rubygems-update
     update_rubygems
