@@ -198,7 +198,10 @@ server() {
     yum -y install rubygems
 
     # install process viewer command
-    yum -y htop atop
+    yum -y install htop atop
+    
+    # install crontab command
+    yum -y install crontabs
 
     # update rubygems
     gem install rubygems-update
@@ -223,6 +226,7 @@ server() {
     chkconfig haproxy on
     chkconfig php-fpm on
     chkconfig gearmand on
+    chkconfig crond on
 }
 
 # Process command line...
