@@ -68,10 +68,10 @@ install_mariadb() {
     yum -y install MariaDB-Galera-server MariaDB-client galera
 }
 
-install_percona_repository () {
+install_percona () {
     # replacing x86_64 with i386 if you are not running a 64-bit operating system
     rpm -Uhv http://www.percona.com/downloads/percona-release/percona-release-0.0-1.x86_64.rpm
-    yum -y install percona-xtrabackup
+    yum -y install Percona-XtraDB-Cluster-server Percona-XtraDB-Cluster-client Percona-Server-shared-compat percona-xtrabackup
 }
 
 install_php() {
@@ -148,11 +148,9 @@ server() {
     # install php
     install_php
 
-    # install MariaDB server
-    install_mariadb
-
-    # install Percona backup script
-    install_percona_repository
+    # install MariaDB server or Percona XtraDB Server (default is Percona Server)
+    install_percona
+    # install_mariadb
 
     # https://github.com/appleboy/MySQLTuner-perl
     wget https://raw.github.com/appleboy/MySQLTuner-perl/master/mysqltuner.pl -O /usr/local/bin/mysqltuner
@@ -256,7 +254,7 @@ case $action in
         install_mariadb
         ;;
     "percona")
-        install_percona_repository
+        install_percona
         ;;
     "nginx")
         install_nginx_spdy
