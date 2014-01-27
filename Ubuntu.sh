@@ -338,10 +338,10 @@ server() {
     # install nvm
     # https://github.com/creationix/nvm
     aptitude -y install curl
-    curl https://raw.github.com/appleboy/nvm/develop/install.sh | sh
+    curl https://raw.github.com/creationix/nvm/master/install.sh | sh
     . ~/.nvm/nvm.sh
-    nvm install stable
-    nvm use stable
+    nvm install 0.10.25
+    nvm use 0.10.25
 
     # coffee script
     npm install -g coffee-script
