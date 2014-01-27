@@ -83,7 +83,7 @@ install_mosh() {
     fi
 }
 
-install_percona_repository () {
+install_percona () {
     output "Install Percona Repository."
     apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
     grep -ir "percona" /etc/apt/sources.list* > /dev/null
@@ -93,7 +93,7 @@ install_percona_repository () {
         echo "deb-src http://repo.percona.com/apt ${version_name} main" >> /etc/apt/sources.list
     fi
     aptitude -y update
-    aptitude -y install percona-xtrabackup
+    aptitude -y install percona-server-server-5.5 percona-server-client-5.5 percona-xtrabackup
 }
 
 install_nginx() {
@@ -218,10 +218,10 @@ server() {
     aptitude -y install vim
 
     # install MariaDB server
-    install_mariadb
+    # install_mariadb
 
-    # install Percona backup script
-    install_percona_repository
+    # install Percona XtraDB Server (default: 5.5 version)
+    install_percona
 
     # apache mpm worker and php-fpm service
     aptitude -y install apache2-mpm-worker libapache2-mod-geoip libapache2-mod-rpaf libapache2-mod-fastcgi
@@ -539,7 +539,7 @@ case $action in
         install_mariadb
         ;;
     "percona")
-        install_percona_repository
+        install_percona
         ;;
     "nginx-spdy")
         install_nginx_spdy
