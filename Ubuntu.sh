@@ -223,15 +223,15 @@ server() {
     # install Percona XtraDB Server (default: 5.5 version)
     install_percona
 
+    # install nginx web server
+    install_nginx
+
     # apache mpm worker and php-fpm service
-    aptitude -y install apache2-mpm-worker libapache2-mod-geoip libapache2-mod-rpaf libapache2-mod-fastcgi
+    # aptitude -y install apache2-mpm-worker libapache2-mod-geoip libapache2-mod-rpaf libapache2-mod-fastcgi
     # install stable php 5.4
     [ "$server_name" == "ubuntu" ] && add-apt-repository ppa:ondrej/php5 -y
     aptitude -y install php5 php5-xdebug php5-xcache php5-cli php5-fpm php5-mysql php5-curl php5-geoip php5-gd php5-intl php5-mcrypt php5-memcache php5-imap php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-cgi spawn-fcgi openssl geoip-database memcached
     aptitude -y install php5-dev php-pear
-
-    # install nginx web server
-    install_nginx
 
     # Remote terminal application. ref: http://mosh.mit.edu
     install_mosh
