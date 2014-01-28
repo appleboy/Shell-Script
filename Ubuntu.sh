@@ -184,6 +184,19 @@ install_s4cmd() {
     cp -r s4cmd/s4cmd.py /usr/bin/
 }
 
+install_perl() {
+    # install cpanm before install Vimana
+    wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
+    chmod 755 /usr/bin/cpanm
+    cpanm Vimana
+    # install some perl module
+    cpanm WWW::Shorten::Bitly
+    cpanm Data::Dumper
+    cpanm XML::Simple
+    cpanm Class::Date
+    cpanm DBD::mysql
+}
+
 server() {
     output "Install Server Packages."
 
@@ -377,17 +390,6 @@ server() {
     # https://launchpad.net/mysql-tuning-primer
     wget https://launchpad.net/mysql-tuning-primer/trunk/1.6-r1/+download/tuning-primer.sh -O /usr/local/bin/tuning-primer
     chmod a+x /usr/local/bin/tuning-primer
-
-    # install cpanm before install Vimana
-    wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
-    chmod 755 /usr/bin/cpanm
-    cpanm Vimana
-    # install some perl module
-    cpanm WWW::Shorten::Bitly
-    cpanm Data::Dumper
-    cpanm XML::Simple
-    cpanm Class::Date
-    cpanm DBD::mysql
 
     # Python interface to MySQL
     aptitude -y install python-mysqldb
