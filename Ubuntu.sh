@@ -295,9 +295,6 @@ server() {
     # grep-like program specifically for large source trees
     aptitude -y install ack-grep
 
-    # install ruby
-    aptitude -y install ruby rake rubygems
-
     # install mercurial
     aptitude -y install mercurial
 
