@@ -204,6 +204,8 @@ install_ruby() {
 
 install_timezone() {
     output "Update default timezone."
+    # check if link file
+    [ -L /etc/localtime ] && unlink /etc/localtime
     # update time zone
     cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
     aptitude -y install ntpdate
