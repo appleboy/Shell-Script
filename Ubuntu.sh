@@ -3,7 +3,7 @@
 # Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2013/04/09
+# modified: 2014/01/29
 #
 # Program:
 #   Install all Ubuntu program automatically
@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [perl|s4cmd|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [ruby|perl|s4cmd|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -570,6 +570,9 @@ case $action in
         ;;
     "perl")
         install_perl
+        ;;
+    "ruby")
+        install_ruby
         ;;
     "all")
         initial
