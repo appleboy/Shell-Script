@@ -178,6 +178,23 @@ install_ruby() {
     # Don’t require rdoc and ri when installing gems
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
     gem i bundler rails
+    # install compass tool and livereload (https://github.com/guard/guard-livereload)
+    gem i compass
+    gem i rb-inotify guard-livereload yajl-ruby
+
+    # install capistrano tool
+    gem i capistrano
+
+    # Optimize images using multiple utilities
+    # ref: https://github.com/toy/image_optim
+    gem i image_optim
+
+    # S3CP: Commands-line tools for Amazon S3 file manipulation
+    # ref: https://github.com/aboisvert/s3cp
+    # usage:
+    # export AWS_ACCESS_KEY_ID=xxxx
+    # export AWS_SECRET_ACCESS_KEY=xxx
+    gem i s3cp
 }
 
 install_timezone() {
@@ -292,27 +309,8 @@ server() {
     # install ImageMagic
     aptitude -y install imagemagick
 
-    # update rubygems
-    gem install rubygems-update
-    update_rubygems
-
-    # install compass tool and livereload (https://github.com/guard/guard-livereload)
-    gem install compass
-    gem install rb-inotify guard-livereload yajl-ruby
-
-    # install capistrano tool
-    gem install capistrano
-
-    # Optimize images using multiple utilities
-    # ref: https://github.com/toy/image_optim
-    gem install image_optim
-
-    # S3CP: Commands-line tools for Amazon S3 file manipulation
-    # ref: https://github.com/aboisvert/s3cp
-    gem install s3cp
-    # usage:
-    # export AWS_ACCESS_KEY_ID=xxxx
-    # export AWS_SECRET_ACCESS_KEY=xxx
+    # install ruby environment
+    install_ruby
 
     # install PPA purge command
     aptitude -y install ppa-purge
