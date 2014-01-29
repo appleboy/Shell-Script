@@ -350,7 +350,7 @@ server() {
     pecl install channel://pecl.php.net/gearman-1.1.2
 
     # support Zend OPcache on PHP 5.2, 5.3 and 5.4
-    pecl install channel://pecl.php.net/ZendOpcache-7.0.2
+    pecl install channel://pecl.php.net/ZendOpcache-7.0.3
 
     # install nvm
     # https://github.com/creationix/nvm
