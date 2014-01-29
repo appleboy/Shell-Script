@@ -97,6 +97,7 @@ install_percona () {
 }
 
 install_nginx() {
+    output "Install Nginx server."
     wget http://nginx.org/keys/nginx_signing.key -O /tmp/nginx_signing.key
     sudo apt-key add /tmp/nginx_signing.key
     grep -ir "nginx.org" /etc/apt/sources.list* > /dev/null
@@ -110,6 +111,7 @@ install_nginx() {
 }
 
 install_nginx_spdy() {
+    output "Install Nginx SPDY server."
     # install dependence package.
     aptitude -y install libpcre3-dev libgd-dev libgd2-xpm-dev libgeoip-dev libxslt-dev
     # install nginx 1.4.x up version with spdy module
@@ -154,6 +156,7 @@ install_nginx_spdy() {
 }
 
 install_gearmand() {
+    output "Install Gearman server."
     aptitude -y install libboost-program-options-dev gperf libcloog-ppl0 libpq-dev libmemcached-dev libevent-dev
     # install mariadb header file
     aptitude -y install libmariadbclient-dev uuid-dev
@@ -166,11 +169,13 @@ install_gearmand() {
 }
 
 install_proftpd() {
+    output "Install FTP Server."
     # install ftp daemon
     aptitude -y install proftpd
 }
 
 install_ruby() {
+    output "Install Ruby package."
     aptitude -y install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
     echo 'source /usr/local/rvm/scripts/rvm' >> ~/.bashrc
@@ -198,6 +203,7 @@ install_ruby() {
 }
 
 install_timezone() {
+    output "Update default timezone."
     # update time zone
     cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
     aptitude -y install ntpdate
@@ -207,11 +213,13 @@ install_timezone() {
 }
 
 install_s4cmd() {
+    output "Install s4 command."
     cd ~ && git clone https://github.com/bloomreach/s4cmd.git
     cp -r s4cmd/s4cmd.py /usr/bin/
 }
 
 install_perl() {
+    output "Install Perl environment."
     # install cpanm before install Vimana
     wget --no-check-certificate http://xrl.us/cpanm -O /usr/bin/cpanm
     chmod 755 /usr/bin/cpanm
