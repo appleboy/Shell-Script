@@ -93,7 +93,7 @@ install_percona () {
         echo "deb-src http://repo.percona.com/apt ${version_name} main" >> /etc/apt/sources.list
     fi
     aptitude -y update
-    aptitude -y install percona-server-server-5.5 percona-server-client-5.5 percona-xtrabackup
+    aptitude -y install percona-server-server-5.5 percona-server-client-5.5 percona-xtrabackup libmysqlclient-dev
 }
 
 install_nginx() {
