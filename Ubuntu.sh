@@ -200,6 +200,9 @@ install_ruby() {
     # export AWS_ACCESS_KEY_ID=xxxx
     # export AWS_SECRET_ACCESS_KEY=xxx
     gem i s3cp
+
+    # wbench. It benchmarks websites, YO!
+    gem i wbench
 }
 
 install_timezone() {
@@ -423,9 +426,6 @@ server() {
 
     # remove MTA service
     aptitude -y remove exim4
-
-    # wbench. It benchmarks websites, YO!
-    gem install wbench
 }
 
 desktop() {
