@@ -210,7 +210,7 @@ install_timezone() {
     # check if link file
     [ -L /etc/localtime ] && unlink /etc/localtime
     # update time zone
-    cp -r /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+    ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
     aptitude -y install ntpdate
     ntpdate time.stdtime.gov.tw
     # write time to clock.
