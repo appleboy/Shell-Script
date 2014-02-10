@@ -65,7 +65,7 @@ install_mariadb() {
     # https://kb.askmonty.org/en/installing-mariadb-with-yum/
     wget https://gist.github.com/appleboy/5277201/raw/46e3d42e79e89eb3f5dcf3d2bb5965dc8c818ab7/MariaDB+5.5+CentOS -O /etc/yum.repos.d/MariaDB.repo
     initial
-    yum -y install MariaDB-Galera-server MariaDB-client galera
+    yum -y install MariaDB-Galera-server MariaDB-client MariaDB-devel galera
 }
 
 install_percona () {
