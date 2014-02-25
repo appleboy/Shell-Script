@@ -178,7 +178,7 @@ install_ruby() {
     output "Install Ruby package."
     aptitude -y install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
-    echo 'source /usr/local/rvm/scripts/rvm' >> ~/.bashrc
+    echo '. /etc/profile.d/rvm.sh' >> ~/.bashrc
     . ~/.bashrc
     # Don’t require rdoc and ri when installing gems
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
