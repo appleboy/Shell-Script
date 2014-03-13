@@ -370,25 +370,6 @@ server() {
     nvm install 0.10.25
     nvm use 0.10.25
 
-    # coffee script
-    npm install -g coffee-script
-    # express server
-    npm install -g express
-    # Handlebars.js command
-    npm install -g handlebars
-    # RequireJS command line tool
-    npm install -g requirejs
-    # transfer javascript to coffee script tool
-    npm install -g js2coffee
-    # UglifyJS 2
-    npm install -g uglify-js
-    # UglifyJS 1
-    npm install -g uglify-js@1
-    # install twitter bower package
-    npm install -g bower
-    # install grunt task package
-    npm install -g grunt-cli
-
     # install PHP-CS-Fixer
     # https://github.com/fabpot/PHP-CS-Fixer
     wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
