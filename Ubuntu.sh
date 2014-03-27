@@ -256,6 +256,7 @@ server() {
     aptitude -y install gawk
     aptitude -y install libid3tag0-dev
     aptitude -y install libgdbm-dev
+    aptitude -y install unzip
     aptitude -y install xinetd nfs-kernel-server minicom build-essential libncurses5-dev uboot-mkimage autoconf automake
 
     # install git from kernel git://git.kernel.org/pub/scm/git/git.git
