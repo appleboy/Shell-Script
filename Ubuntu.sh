@@ -235,6 +235,7 @@ install_perl() {
     cpanm XML::Simple
     cpanm Class::Date
     cpanm DBD::mysql
+    cpanm WWW::Mechanize
 }
 
 server() {
