@@ -84,15 +84,15 @@ install_nginx_spdy() {
     # install dependence library
     yum -y install pcre-devel openssl-devel libxslt-devel gd-devel perl-ExtUtils-Embed GeoIP-devel
     # install nginx 1.4.x up version with spdy module
-    [ -f /tmp/nginx-1.4.3.tar.gz ] || wget http://nginx.org/download/nginx-1.4.3.tar.gz -O /tmp/nginx-1.4.3.tar.gz
+    [ -f /tmp/nginx-1.4.7.tar.gz ] || wget http://nginx.org/download/nginx-1.4.7.tar.gz -O /tmp/nginx-1.4.7.tar.gz
     # download openssl library
-    [ -f /tmp/openssl-1.0.1e.tar.gz ] || wget http://www.openssl.org/source/openssl-1.0.1e.tar.gz -O /tmp/openssl-1.0.1e.tar.gz
-    [ -d /tmp/nginx-1.4.3 ] && cd /tmp/nginx-1.4.3 && make clean
-    [ -d /tmp/openssl-1.0.1e ] && rm -rf /tmp/openssl-1.0.1e
-    [ -d /tmp/nginx-1.4.3 ] || tar -zxvf /tmp/nginx-1.4.3.tar.gz -C /tmp
-    [ -d /tmp/openssl-1.0.1e ] || tar -zxvf /tmp/openssl-1.0.1e.tar.gz -C /tmp
+    [ -f /tmp/openssl-1.0.1g.tar.gz ] || wget http://www.openssl.org/source/openssl-1.0.1g.tar.gz -O /tmp/openssl-1.0.1g.tar.gz
+    [ -d /tmp/nginx-1.4.7 ] && cd /tmp/nginx-1.4.7 && make clean
+    [ -d /tmp/openssl-1.0.1g ] && rm -rf /tmp/openssl-1.0.1g
+    [ -d /tmp/nginx-1.4.7 ] || tar -zxvf /tmp/nginx-1.4.7.tar.gz -C /tmp
+    [ -d /tmp/openssl-1.0.1g ] || tar -zxvf /tmp/openssl-1.0.1g.tar.gz -C /tmp
     # generate makefile
-    cd /tmp/nginx-1.4.3 && ./configure \
+    cd /tmp/nginx-1.4.7 && ./configure \
         --prefix=/usr/share/nginx \
         --sbin-path=/usr/sbin/nginx \
         --conf-path=/etc/nginx/nginx.conf \
@@ -120,8 +120,8 @@ install_nginx_spdy() {
         --with-mail_ssl_module \
         --with-http_ssl_module \
         --with-http_spdy_module \
-        --with-openssl=/tmp/openssl-1.0.1e
-    cd /tmp/nginx-1.4.3 && make && make install
+        --with-openssl=/tmp/openssl-1.0.1g
+    cd /tmp/nginx-1.4.7 && make && make install
 }
 
 install_s4cmd() {
@@ -197,7 +197,7 @@ server() {
 
     # install process viewer command
     yum -y install htop atop
-    
+
     # install crontab command
     yum -y install crontabs
 
