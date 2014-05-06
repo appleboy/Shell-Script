@@ -98,6 +98,8 @@ case $action in
 
         # add samba user
         [ $samba_enable -ne "0" ] && ((echo $username; echo $username) | smbpasswd -L -s -a $username > /dev/null && smbpasswd -L -s -e $username > /dev/null && echo "add samba user ${username}")
+        # add execute permission.
+        [ -z $cmd ] && chmod +x "${default_home}/$username"
         [ -z $cmd ] && echo "add username $username successfully"
         ;;
     del)
