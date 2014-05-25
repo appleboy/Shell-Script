@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [ruby|perl|s4cmd|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -48,6 +48,14 @@ install_jenkins() {
     sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
     aptitude -y update
     aptitude -y install jenkins
+}
+
+install_optipng() {
+    output "Install optipng package."
+    aptitude -y remove optipng
+    wget http://prdownloads.sourceforge.net/optipng/optipng-0.7.5.tar.gz -O /tmp/optipng-0.7.5.tar.gz
+    cd /tmp && tar -zxvf optipng-0.7.5.tar.gz
+    cd /tmp/optipng-0.7.5 && ./configure && make && make install
 }
 
 install_mariadb() {
@@ -361,6 +369,9 @@ server() {
     aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
     pecl install channel://pecl.php.net/gearman-1.1.2
 
+    # install optipng
+    install_optipng
+
     # support Zend OPcache on PHP 5.2, 5.3 and 5.4
     pecl install channel://pecl.php.net/ZendOpcache-7.0.3
 
@@ -563,6 +574,9 @@ case $action in
         ;;
     "ruby")
         install_ruby
+        ;;
+    "optipng")
+        install_optipng
         ;;
     "all")
         initial
