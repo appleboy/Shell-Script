@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -48,6 +48,14 @@ install_jenkins() {
     sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
     aptitude -y update
     aptitude -y install jenkins
+}
+
+install_redis() {
+    output "Install redis server."
+    aptitude -y install redis-server
+    wget http://download.redis.io/releases/redis-2.8.9.tar.gz -O /tmp/redis-2.8.9.tar.gz
+    cd /tmp && tar -zxvf redis-2.8.9.tar.gz
+    cd /tmp/redis-2.8.9 && make && make install
 }
 
 install_optipng() {
@@ -372,6 +380,9 @@ server() {
     # install optipng
     install_optipng
 
+    # install optipng
+    install_redis
+
     # support Zend OPcache on PHP 5.2, 5.3 and 5.4
     pecl install channel://pecl.php.net/ZendOpcache-7.0.3
 
@@ -577,6 +588,9 @@ case $action in
         ;;
     "optipng")
         install_optipng
+        ;;
+    "redis")
+        install_redis
         ;;
     "all")
         initial
