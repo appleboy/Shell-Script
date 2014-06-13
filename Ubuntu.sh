@@ -53,9 +53,9 @@ install_jenkins() {
 install_redis() {
     output "Install redis server."
     aptitude -y install redis-server
-    wget http://download.redis.io/releases/redis-2.8.9.tar.gz -O /tmp/redis-2.8.9.tar.gz
-    cd /tmp && tar -zxvf redis-2.8.9.tar.gz
-    cd /tmp/redis-2.8.9 && make && make install
+    wget http://download.redis.io/releases/redis-2.8.11.tar.gz -O /tmp/redis-2.8.11.tar.gz
+    cd /tmp && tar -zxvf redis-2.8.11.tar.gz
+    cd /tmp/redis-2.8.11 && make && make install
 }
 
 install_optipng() {
