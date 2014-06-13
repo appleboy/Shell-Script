@@ -219,12 +219,16 @@ server() {
     # export AWS_ACCESS_KEY_ID=xxxx
     # export AWS_SECRET_ACCESS_KEY=xxx
 
+    # install redis server
+    yum -y install redis
+
     # start daemon
     chkconfig nginx on
     chkconfig haproxy on
     chkconfig php-fpm on
     chkconfig gearmand on
     chkconfig crond on
+    chkconfig redis on
 }
 
 # Process command line...
