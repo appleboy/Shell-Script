@@ -138,7 +138,7 @@ server() {
     # install RHEL EPEL Repo.
     install_epel
     output "Install Server Packages."
-    yum -y install make git tmux wget
+    yum -y install make git tmux wget tig
 
     # CentOS Linux v6.x
     wget http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
