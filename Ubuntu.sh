@@ -280,7 +280,7 @@ server() {
     aptitude -y install libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
 
     # git core and git flow command
-    aptitude -y install git git-core git-doc git-gui git-flow
+    aptitude -y install git git-core git-doc git-gui git-flow tig
 
     # mkpasswd command
     aptitude -y install whois
