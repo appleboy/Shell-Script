@@ -40,6 +40,16 @@ initial() {
     apt-get -y install aptitude
 }
 
+install_ajenti() {
+    # ref http://ajenti.org/
+    output "Install the admin panel your servers deserve."
+    if [ "$server_name" == "debian" ] ; then
+        wget -O- https://raw.github.com/Eugeny/ajenti/master/scripts/install-debian.sh | sh
+    else
+        wget -O- https://raw.github.com/Eugeny/ajenti/master/scripts/install-ubuntu.sh | sh
+    fi
+}
+
 install_jenkins() {
     # ref https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
     output "Install Jenkins Server."
