@@ -10,7 +10,7 @@
 ################################################################################
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [percona|mariadb|server|initial]'
+    echo 'Usage: '$0' [--help|-h] [ajenti|percona|mariadb|server|initial]'
     exit 1;
 }
 
@@ -58,6 +58,12 @@ install_epel() {
     wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
     rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm
     initial
+}
+
+install_ajenti() {
+    # ref http://ajenti.org/
+    output "Install the admin panel your servers deserve."
+    wget -O- https://raw.github.com/Eugeny/ajenti/master/scripts/install-rhel.sh | sh
 }
 
 install_mariadb() {
@@ -262,6 +268,9 @@ case $action in
         ;;
     "nginx")
         install_nginx_spdy
+        ;;
+    "ajenti")
+        install_ajenti
         ;;
     *)
         usage $0
