@@ -1,6 +1,11 @@
 #
 # /etc/xinetd.d/mysqlchk
 #
+# please make sure add the following on /etc/services
+# mysqlchk 9200/tcp
+#
+# Author: Bo-Yi Wu <appleboy.tw@gmail.com>
+#
 service mysqlchk
 {
     flags = REUSE
