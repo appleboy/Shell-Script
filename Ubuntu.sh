@@ -382,6 +382,9 @@ server() {
 
     # install Munin Monitor
     aptitude -y install munin-node munin
+    
+    # Supervisor is a client/server system that allows its users to control a number of processes on UNIX-like operating systems.
+    aptitude -y install supervisor
 
     # update time zone
     install_timezone
