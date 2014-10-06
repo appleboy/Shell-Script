@@ -209,6 +209,8 @@ server() {
     
     # Supervisor is a client/server system that allows its users to control a number of processes on UNIX-like operating systems.
     yum -y install supervisor
+    # install latest supervisor
+    pip install supervisor
 
     # update rubygems
     gem install rubygems-update
