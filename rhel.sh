@@ -211,6 +211,11 @@ server() {
     yum -y install supervisor
     # install latest supervisor
     pip install supervisor
+    
+   #  install PHP-CS-Fixer
+    # https://github.com/FriendsOfPHP/PHP-CS-Fixer
+    wget http://get.sensiolabs.org/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
+    chmod a+x /usr/local/bin/php-cs-fixer
 
     # update rubygems
     gem install rubygems-update
