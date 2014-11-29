@@ -413,8 +413,8 @@ server() {
     nvm use 0.10.25
 
     # install PHP-CS-Fixer
-    # https://github.com/fabpot/PHP-CS-Fixer
-    wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
+    # https://github.com/FriendsOfPHP/PHP-CS-Fixer
+    wget http://get.sensiolabs.org/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer
     chmod a+x /usr/local/bin/php-cs-fixer
 
     # install NySQL monitor
