@@ -48,9 +48,20 @@ install_elasticsearch() {
     update-rc.d elasticsearch defaults 95 10
     
     # installing the oracle jdk
+    # ref: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-service.html#_installing_the_oracle_jdk
     add-apt-repository ppa:webupd8team/java
     aptitude -y update
     aptitude -y install oracle-java8-installer
+    
+    # install plugin (https://github.com/mobz/elasticsearch-head)
+    cd /usr/share/elasticsearch && ./bin/plugin -i elasticsearch/marvel/latest
+    cd /usr/share/elasticsearch && ./bin/plugin -i mobz/elasticsearch-head
+    # install jdbc plugin (https://github.com/jprante/elasticsearch-river-jdbc)
+    cd /usr/share/elasticsearch && ./bin/plugin --install jdbc --url http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-river-jdbc/1.4.0.8/elasticsearch-river-jdbc-1.4.0.8-plugin.zip
+    # Download MySQL JDBC driver
+    cd /usr/share/elasticsearch && curl -o mysql-connector-java-5.1.33.zip -L 'http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.33.zip/from/http://cdn.mysql.com/'
+    cd /usr/share/elasticsearch && unzip mysql-connector-java-5.1.33.zip -d driver 
+    cd /usr/share/elasticsearch && cp driver/mysql-connector-java-5.1.33/mysql-connector-java-5.1.33-bin.jar plugins/jdbc/
 }
 
 install_ajenti() {
