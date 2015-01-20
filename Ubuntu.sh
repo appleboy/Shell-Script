@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -38,6 +38,19 @@ initial() {
     apt-get -y update && apt-get -y upgrade
     # terminal-based package manager (terminal interface only)
     apt-get -y install aptitude
+}
+
+install_elasticsearch() {
+    # ref http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-repositories.html
+    wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+    echo "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" >> /etc/apt/sources.list.d/elasticsearch.list
+    aptitude -y update && aptitude -y install elasticsearch
+    update-rc.d elasticsearch defaults 95 10
+    
+    # installing the oracle jdk
+    add-apt-repository ppa:webupd8team/java
+    aptitude -y update
+    aptitude -y install oracle-java8-installer
 }
 
 install_ajenti() {
@@ -612,6 +625,9 @@ case $action in
         ;;
     "ajenti")
         install_ajenti
+        ;;
+    "elasticsearch")
+        install_elasticsearch
         ;;
     "all")
         initial
