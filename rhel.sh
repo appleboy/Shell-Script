@@ -135,6 +135,16 @@ install_s4cmd() {
     cp -r s4cmd/s4cmd.py /usr/bin/
 }
 
+install_elasticsearch() {
+    # remove old java version
+    yum remove -y java-1.6.0-openjdk
+    yum remove -y java-1.7.0-openjdk
+    yum install -y java-1.8.0-openjdk.x86_64
+    rpm --import https://packages.elasticsearch.org/GPG-KEY-elasticsearch
+    yum install -y elasticsearch
+    chkconfig --add elasticsearch
+}
+
 server() {
     # Remove unnecessary Packages.
     remove_package
@@ -281,6 +291,9 @@ case $action in
         ;;
     "ajenti")
         install_ajenti
+        ;;
+    "elasticsearch")
+        install_elasticsearch
         ;;
     *)
         usage $0
