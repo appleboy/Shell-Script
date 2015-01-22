@@ -144,6 +144,16 @@ install_elasticsearch() {
     wget https://raw.githubusercontent.com/appleboy/Shell-Script/master/etc/yum.repos.d/elasticsearch.repo -O /etc/yum.repos.d/elasticsearch.repo
     yum install -y elasticsearch
     chkconfig --add elasticsearch
+    
+    # install plugin (https://github.com/mobz/elasticsearch-head)
+    cd /usr/share/elasticsearch && ./bin/plugin -i elasticsearch/marvel/latest
+    cd /usr/share/elasticsearch && ./bin/plugin -i mobz/elasticsearch-head
+    # install jdbc plugin (https://github.com/jprante/elasticsearch-river-jdbc)
+    cd /usr/share/elasticsearch && ./bin/plugin --install jdbc --url http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-river-jdbc/1.4.0.8/elasticsearch-river-jdbc-1.4.0.8-plugin.zip
+    # Download MySQL JDBC driver
+    cd /usr/share/elasticsearch && curl -o mysql-connector-java-5.1.33.zip -L 'http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.33.zip/from/http://cdn.mysql.com/'
+    cd /usr/share/elasticsearch && unzip mysql-connector-java-5.1.33.zip -d driver
+    cd /usr/share/elasticsearch && cp driver/mysql-connector-java-5.1.33/mysql-connector-java-5.1.33-bin.jar plugins/jdbc/
 }
 
 server() {
