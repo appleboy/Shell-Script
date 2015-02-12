@@ -431,10 +431,10 @@ server() {
     # install nvm
     # https://github.com/creationix/nvm
     aptitude -y install curl
-    curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | bash
     . ~/.nvm/nvm.sh
-    nvm install 0.10.25
-    nvm use 0.10.25
+    nvm install stable
+    nvm use stable
 
     # install PHP-CS-Fixer
     # https://github.com/FriendsOfPHP/PHP-CS-Fixer
