@@ -471,6 +471,9 @@ server() {
     pip install boto
     install_s4cmd
 
+    # install jenkins
+    install_jenkins
+
     # remove MTA service
     aptitude -y remove exim4 bsd-mailx exim4-base exim4-config exim4-daemon-light
 }
