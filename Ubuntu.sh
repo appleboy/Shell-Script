@@ -416,8 +416,8 @@ server() {
     install_timezone
 
     # install Gearman Daemon
-    aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
-    pecl install channel://pecl.php.net/gearman-1.1.2
+    # aptitude -y install gearman gearman-job-server libgearman-dev libdrizzle0
+    # pecl install channel://pecl.php.net/gearman-1.1.2
 
     # install optipng
     install_optipng
