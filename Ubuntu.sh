@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -38,6 +38,14 @@ initial() {
     apt-get -y update && apt-get -y upgrade
     # terminal-based package manager (terminal interface only)
     apt-get -y install aptitude
+}
+
+install_hhvm() {
+    # https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Debian-7
+    apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
+    echo deb http://dl.hhvm.com/debian wheezy main | sudo tee /etc/apt/sources.list.d/hhvm.list
+    aptitude -y update
+    aptitude -y install hhvm
 }
 
 install_elasticsearch() {
@@ -474,6 +482,9 @@ server() {
     # install jenkins
     install_jenkins
 
+    #install hhvm
+    install_hhvm
+
     # remove MTA service
     aptitude -y remove exim4 bsd-mailx exim4-base exim4-config exim4-daemon-light
 }
@@ -642,6 +653,9 @@ case $action in
         ;;
     "elasticsearch")
         install_elasticsearch
+        ;;
+    "hhvm")
+        install_hhvm
         ;;
     "all")
         initial
