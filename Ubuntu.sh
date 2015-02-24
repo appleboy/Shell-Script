@@ -41,9 +41,12 @@ initial() {
 }
 
 install_hhvm() {
-    # https://github.com/facebook/hhvm/wiki/Prebuilt-Packages-on-Debian-7
+    if [ "$server_name" == "ubuntu" ] ; then
+        aptitude -y install python-software-properties
+        add-apt-repository ppa:mapnik/boost
+    fi
     apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
-    echo deb http://dl.hhvm.com/debian wheezy main | sudo tee /etc/apt/sources.list.d/hhvm.list
+    echo deb http://dl.hhvm.com/$server_name $version_name main | sudo tee /etc/apt/sources.list.d/hhvm.list
     aptitude -y update
     aptitude -y install hhvm
 }
@@ -481,9 +484,6 @@ server() {
 
     # install jenkins
     install_jenkins
-
-    #install hhvm
-    install_hhvm
 
     # remove MTA service
     aptitude -y remove exim4 bsd-mailx exim4-base exim4-config exim4-daemon-light
