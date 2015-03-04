@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -38,6 +38,14 @@ initial() {
     apt-get -y update && apt-get -y upgrade
     # terminal-based package manager (terminal interface only)
     apt-get -y install aptitude
+}
+
+install_postgresql() {
+    # http://wiki.postgresql.org/wiki/Apt
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ ${version_name}-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    aptitude -y update
+    aptitude -y install postgresql-9.4 pgadmin3
 }
 
 install_hhvm() {
@@ -656,6 +664,9 @@ case $action in
         ;;
     "hhvm")
         install_hhvm
+        ;;
+    "postgresql")
+        install_postgresql
         ;;
     "all")
         initial
