@@ -341,6 +341,9 @@ server() {
     # vim
     aptitude -y install vim
 
+    # install python tool.
+    aptitude -y install python-software-properties
+
     # install MariaDB server
     # install_mariadb
 
