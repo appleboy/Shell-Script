@@ -27,3 +27,9 @@ Install ubuntu program, library, desktop tool automatically.
 ### rhel.sh [for CentOS 6.x]
 
 Install CentOS program, library, desktop tool automatically.
+
+### monitor.sh [for Ubuntu/Debian]
+
+System message.
+
+![bash screenshot](screenshot/monitor.png)

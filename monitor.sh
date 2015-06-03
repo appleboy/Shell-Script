@@ -1,5 +1,5 @@
                   ####################################################################################################
-                  #                                        Tecmint_monitor.sh                                        #
+                  #                                        monitor.sh                                        #
                   # Written for Tecmint.com for the post www.tecmint.com/linux-server-health-monitoring-script/      #
                   # If any bug, report us in the link below                                                          #
                   # Free to use/edit/distribute the code below by                                                    #
