@@ -15,7 +15,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx-spdy|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -38,6 +38,14 @@ initial() {
     apt-get -y update && apt-get -y upgrade
     # terminal-based package manager (terminal interface only)
     apt-get -y install aptitude
+}
+
+install_git_extras() {
+    # https://github.com/tj/git-extras/blob/master/Installation.md
+    git clone https://github.com/tj/git-extras.git
+    cd git-extras
+    git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
+    make install
 }
 
 install_postgresql() {
@@ -496,6 +504,9 @@ server() {
     # install jenkins
     install_jenkins
 
+    # install git extras
+    install_git_extras
+
     # remove MTA service
     aptitude -y remove exim4 bsd-mailx exim4-base exim4-config exim4-daemon-light
 }
@@ -670,6 +681,9 @@ case $action in
         ;;
     "postgresql")
         install_postgresql
+        ;;
+    "git-extras")
+        install_git_extras
         ;;
     "all")
         initial
