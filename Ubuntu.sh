@@ -1,12 +1,10 @@
 #!/bin/bash
 ################################################################################
-# Date:     2011/04/18
 # Author:   appleboy ( appleboy.tw AT gmail.com)
 # Web:      http://blog.wu-boy.com
-# modified: 2014/01/29
 #
 # Program:
-#   Install all Ubuntu program automatically
+#   Install all Ubuntu/Debian program automatically
 #
 ################################################################################
 
