@@ -13,7 +13,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -180,6 +180,20 @@ install_nginx() {
         output "Add Nginx Repository to /etc/apt/sources.list"
         echo "deb http://nginx.org/packages/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
         echo "deb-src http://nginx.org/packages/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+    fi
+    aptitude -y update
+    aptitude -y install nginx
+}
+
+install_nginx_mainline() {
+    output "Install Nginx server."
+    wget http://nginx.org/keys/nginx_signing.key -O /tmp/nginx_signing.key
+    sudo apt-key add /tmp/nginx_signing.key
+    grep -ir "nginx.org" /etc/apt/sources.list* > /dev/null
+    if [ $? == "1" ]; then
+        output "Add Nginx Repository to /etc/apt/sources.list"
+        echo "deb http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
+        echo "deb-src http://nginx.org/packages/mainline/${server_name}/ ${version_name} nginx" >> /etc/apt/sources.list
     fi
     aptitude -y update
     aptitude -y install nginx
@@ -592,6 +606,9 @@ case $action in
         ;;
     "nginx")
         install_nginx
+        ;;
+    "nginx_mainline"
+        install_nginx_mainline
         ;;
     "mosh")
         install_mosh
