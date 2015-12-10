@@ -13,7 +13,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [docker|git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -52,6 +52,15 @@ install_postgresql() {
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
     aptitude -y update
     aptitude -y install postgresql-9.4 pgadmin3
+}
+
+install_docker() {
+    # https://docs.docker.com/engine/installation/debianapt-key
+    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    aptitude -y update
+    aptitude -y install docker-engine
+    # or install from single command
+    # wget -qO- https://get.docker.com/ | sh
 }
 
 install_hhvm() {
@@ -474,6 +483,9 @@ server() {
     # install git extras
     install_git_extras
 
+    # install docker
+    install_docker
+
     # remove MTA service
     aptitude -y remove exim4 bsd-mailx exim4-base exim4-config exim4-daemon-light
 }
@@ -651,6 +663,9 @@ case $action in
         ;;
     "git-extras")
         install_git_extras
+        ;;
+    "docker"")
+        install_docker
         ;;
     "all")
         initial
