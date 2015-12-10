@@ -61,6 +61,8 @@ install_docker() {
     aptitude -y install docker-engine
     # or install from single command
     # wget -qO- https://get.docker.com/ | sh
+    # Error message Depends: init-system-helpers (>= 1.13~) but 1.7 is installed.
+    # Please refer https://github.com/docker/docker/issues/15692#issuecomment-151726895
 }
 
 install_hhvm() {
