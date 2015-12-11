@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # install some command
+which aptitude || apt-get -qqy install aptitude
 aptitude -y install make git sudo tmux
 
 # fetch dotfiles and script
