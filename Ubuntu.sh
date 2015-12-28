@@ -474,6 +474,9 @@ server() {
     # https://github.com/seb-m/pyinotify
     pip install pyinotify
 
+    # https://github.com/tldr-pages/tldr
+    pip install tldr
+
     # install Amazone Super S3 command line tool
     # ref: https://github.com/bloomreach/s4cmd
     pip install boto
