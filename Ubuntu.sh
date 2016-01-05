@@ -477,6 +477,9 @@ server() {
     # https://github.com/tldr-pages/tldr
     pip install tldr
 
+    # https://github.com/dbcli/pgcli
+    pip install pgcli
+
     # install Amazone Super S3 command line tool
     # ref: https://github.com/bloomreach/s4cmd
     pip install boto
