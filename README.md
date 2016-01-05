@@ -30,6 +30,6 @@ Install CentOS program, library, desktop tool automatically.
 
 ### monitor.sh [for Ubuntu/Debian]
 
-System message.
+Demo ScreenShot.
 
 ![bash screenshot](screenshot/monitor.png)
