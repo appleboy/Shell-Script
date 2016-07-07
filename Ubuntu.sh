@@ -82,13 +82,13 @@ install_elasticsearch() {
     echo "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main" >> /etc/apt/sources.list.d/elasticsearch.list
     aptitude -y update && aptitude -y install elasticsearch
     update-rc.d elasticsearch defaults 95 10
-    
+
     # installing the oracle jdk
     # ref: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-service.html#_installing_the_oracle_jdk
     add-apt-repository ppa:webupd8team/java
     aptitude -y update
     aptitude -y install oracle-java8-installer
-    
+
     # install plugin (https://github.com/mobz/elasticsearch-head)
     cd /usr/share/elasticsearch && ./bin/plugin -i elasticsearch/marvel/latest
     cd /usr/share/elasticsearch && ./bin/plugin -i mobz/elasticsearch-head
@@ -96,7 +96,7 @@ install_elasticsearch() {
     cd /usr/share/elasticsearch && ./bin/plugin --install jdbc --url http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-river-jdbc/1.4.0.8/elasticsearch-river-jdbc-1.4.0.8-plugin.zip
     # Download MySQL JDBC driver
     cd /usr/share/elasticsearch && curl -o mysql-connector-java-5.1.33.zip -L 'http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.33.zip/from/http://cdn.mysql.com/'
-    cd /usr/share/elasticsearch && unzip mysql-connector-java-5.1.33.zip -d driver 
+    cd /usr/share/elasticsearch && unzip mysql-connector-java-5.1.33.zip -d driver
     cd /usr/share/elasticsearch && cp driver/mysql-connector-java-5.1.33/mysql-connector-java-5.1.33-bin.jar plugins/jdbc/
 }
 
@@ -414,7 +414,7 @@ server() {
 
     # install Munin Monitor
     aptitude -y install munin-node munin
-    
+
     # Supervisor is a client/server system that allows its users to control a number of processes on UNIX-like operating systems.
     aptitude -y install supervisor
     # install latest supervisor
@@ -484,6 +484,9 @@ server() {
     # ref: https://github.com/bloomreach/s4cmd
     pip install boto
     install_s4cmd
+
+    # https://github.com/eliangcs/http-prompt
+    pip install http-prompt
 
     # install jenkins
     install_jenkins
