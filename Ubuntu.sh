@@ -13,7 +13,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-    echo 'Usage: '$0' [--help|-h] [-i|--install] [docker|git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+    echo 'Usage: '$0' [--help|-h] [-i|--install] [tmux|docker|git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
     exit 1;
 }
 
@@ -63,6 +63,12 @@ install_docker() {
     # wget -qO- https://get.docker.com/ | sh
     # Error message Depends: init-system-helpers (>= 1.13~) but 1.7 is installed.
     # Please refer https://github.com/docker/docker/issues/15692#issuecomment-151726895
+}
+
+install_tmux() {
+  apt-get -y install make g++ gawk automake pkg-config libevent-dev ncurses-dev
+  git clone https://github.com/tmux/tmux.git
+  cd tmux/ && sh autogen.sh && ./configure && make && make install
 }
 
 install_hhvm() {
@@ -630,7 +636,7 @@ case $action in
     "nginx")
         install_nginx
         ;;
-    "nginx_mainline"
+    "nginx_mainline")
         install_nginx_mainline
         ;;
     "mosh")
@@ -675,8 +681,11 @@ case $action in
     "git-extras")
         install_git_extras
         ;;
-    "docker"")
+    "docker")
         install_docker
+        ;;
+    "tmux")
+        install_tmux
         ;;
     "all")
         initial
