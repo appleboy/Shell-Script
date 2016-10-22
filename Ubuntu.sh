@@ -57,6 +57,7 @@ install_postgresql() {
 install_docker() {
     # https://docs.docker.com/engine/installation/debian
     apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    echo "deb https://apt.dockerproject.org/repo ${server_name}-${version_name} main"  > /etc/apt/sources.list.d/docker.list
     aptitude -y update
     aptitude -y install docker-engine
     # install docker compose
