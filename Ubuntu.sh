@@ -62,7 +62,7 @@ install_docker() {
     aptitude -y install docker-engine
     # install docker compose
     # https://docs.docker.com/compose/install/
-    curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
     docker-compose --version
     # or install from single command
