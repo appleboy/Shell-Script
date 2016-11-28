@@ -38,6 +38,17 @@ initial() {
     apt-get -y install aptitude
 }
 
+install_pgcli() {
+  # ref: http://pgcli.com/install
+  aptitude -y update
+  aptitude -y install python-pip
+  aptitude -y libpq-dev python-dev
+  pip install --upgrade pip
+  pip install pgcli
+  # ref: http://discuss.flexget.com/t/solved-error-while-installing-flexget-ubuntu-server-trusty/1109
+  pip install --upgrade six
+}
+
 install_git_extras() {
     # https://github.com/tj/git-extras/blob/master/Installation.md
     git clone https://github.com/tj/git-extras.git
