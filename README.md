@@ -3,13 +3,13 @@
 Using ``wget`` command
 
 ```
-$ wget -qO- https://raw.github.com/appleboy/Shell-Script/master/init.sh | sh
+$ wget -qO- https://raw.githubusercontent.com/appleboy/Shell-Script/master/init.sh | sh
 ```
 
 Using ``curl`` command
 
 ```
-$ curl https://raw.github.com/appleboy/Shell-Script/master/init.sh | sh
+$ curl https://raw.githubusercontent.com/appleboy/Shell-Script/master/init.sh | sh
 ```
 
 ### adduser.sh [for Ubuntu or Debian]
