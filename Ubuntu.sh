@@ -55,6 +55,7 @@ install_mycli() {
   aptitude -y install python-pip
   aptitude -y libpq-dev python-dev
   pip install --upgrade pip
+  pip install --upgrade six
   pip install mycli
 }
 
