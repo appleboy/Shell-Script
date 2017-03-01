@@ -13,7 +13,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-  echo 'Usage: '$0' [--help|-h] [-i|--install] [pgcli|tmux|docker|git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+  echo 'Usage: '$0' [--help|-h] [-i|--install] [mycli|pgcli|tmux|docker|git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
   exit 1;
 }
 
@@ -47,6 +47,15 @@ install_pgcli() {
   pip install pgcli
   # ref: http://discuss.flexget.com/t/solved-error-while-installing-flexget-ubuntu-server-trusty/1109
   pip install --upgrade six
+}
+
+install_mycli() {
+  # ref: https://github.com/dbcli/mycli
+  aptitude -y update
+  aptitude -y install python-pip
+  aptitude -y libpq-dev python-dev
+  pip install --upgrade pip
+  pip install mycli
 }
 
 install_git_extras() {
@@ -707,6 +716,9 @@ case $action in
     ;;
   "pgcli")
     install_pgcli
+    ;;
+  "mycli")
+    install_mycli
     ;;
   "all")
     initial
