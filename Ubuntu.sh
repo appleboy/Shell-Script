@@ -76,14 +76,13 @@ install_postgresql() {
 }
 
 install_docker() {
-    # https://docs.docker.com/engine/installation/linux/debian/
-    curl -fsSL https://yum.dockerproject.org/gpg | apt-key add -
-    echo "deb https://apt.dockerproject.org/repo ${server_name}-${version_name} main"  > /etc/apt/sources.list.d/docker.list
-    aptitude -y update
-    aptitude -y install docker-engine
+    wget -qO- https://get.docker.com/ | sh
+    # Error message Depends: init-system-helpers (>= 1.13~) but 1.7 is installed.
+    # Please refer https://github.com/docker/docker/issues/15692#issuecomment-151726895
+
     # install docker compose
     # https://docs.docker.com/compose/install/
-    curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/1.12.0/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
     docker-compose --version
     # or install from single command
