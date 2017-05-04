@@ -42,7 +42,7 @@ install_pgcli() {
   # ref: http://pgcli.com/install
   aptitude -y update
   aptitude -y install python-pip
-  aptitude -y libpq-dev python-dev
+  aptitude -y install libpq-dev python-dev
   pip install --upgrade pip
   pip install pgcli
   # ref: http://discuss.flexget.com/t/solved-error-while-installing-flexget-ubuntu-server-trusty/1109
@@ -53,7 +53,7 @@ install_mycli() {
   # ref: https://github.com/dbcli/mycli
   aptitude -y update
   aptitude -y install python-pip
-  aptitude -y libpq-dev python-dev
+  aptitude -y install libpq-dev python-dev
   pip install --upgrade pip
   pip install --upgrade six
   pip install mycli
