@@ -728,6 +728,9 @@ case $action in
   "mycli")
     install_mycli
     ;;
+  "upx")
+    install_upx
+    ;;
   "all")
     initial
     server
