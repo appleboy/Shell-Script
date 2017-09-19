@@ -13,7 +13,7 @@ server_name=`lsb_release -ds | awk -F ' ' '{printf $1}' | tr A-Z a-z`
 version_name=`lsb_release -cs`
 
 usage() {
-  echo 'Usage: '$0' [--help|-h] [-i|--install] [mycli|pgcli|tmux|docker|git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
+  echo 'Usage: '$0' [--help|-h] [-i|--install] [upx|mycli|pgcli|tmux|docker|git-extras|postgresql|hhvm|elasticsearch|ajenti|redis|ruby|perl|s4cmd|optipng|timezone|jenkins|mosh|gearman|nginx|nginx_mainline|percona|mariadb|clean-kernel|server|desktop|initial|all]'
   exit 1;
 }
 
@@ -36,6 +36,14 @@ initial() {
     apt-get -y update && apt-get -y upgrade
     # terminal-based package manager (terminal interface only)
     apt-get -y install aptitude
+}
+
+install_upx() {
+  aptitude -y install make g++ libucl-dev libz-dev
+  git clone https://github.com/upx/upx.git && cd upx
+  git submodule update --init --recursive
+  make all
+  cp -r src/upx.out /usr/local/bin/upx
 }
 
 install_pgcli() {
