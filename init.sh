@@ -2,7 +2,7 @@
 
 # install some command
 which aptitude || apt-get -qqy install aptitude
-aptitude -y update && aptitude -y install make git libncurses5-dev
+aptitude -y update && aptitude -y install make git gcc libncurses5-dev
 
 # fetch dotfiles and script
 cd ~ && git clone https://github.com/appleboy/dotfiles.git
