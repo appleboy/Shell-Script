@@ -84,14 +84,17 @@ install_postgresql() {
 }
 
 install_docker() {
+    output "Install docker daemon"
     wget -qO- https://get.docker.com/ | sh
     # Error message Depends: init-system-helpers (>= 1.13~) but 1.7 is installed.
     # Please refer https://github.com/docker/docker/issues/15692#issuecomment-151726895
 
     # install docker compose
     # https://docs.docker.com/compose/install/
+    output "Install docker compose"
     curl -L "https://github.com/docker/compose/releases/download/1.21.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
+    output "Show docker-compose version"
     docker-compose --version
     # or install from single command
     # wget -qO- https://get.docker.com/ | sh
