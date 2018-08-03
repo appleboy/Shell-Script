@@ -17,15 +17,16 @@ usage() {
   exit 1;
 }
 
+COLOR_REST='\e[0m'
+COLOR_GREEN='\e[0;32m'
+COLOR_RED='\e[0;31m'
 output() {
-    printf "\E[0;33;40m"
-    echo $1
-    printf "\E[0m"
+  echo -e "${COLOR_GREEN}$1${COLOR_REST}"
 }
 
 displayErr() {
     echo
-    echo $1;
+    echo -e "${COLOR_RED}$1${COLOR_REST}"
     echo
     exit 1;
 }
